@@ -31,13 +31,13 @@ public class EditControls implements ActionListener{
                 );
                 //handle blank/cancel
                 if (newText != null & !newText.isBlank()) {
-                    CVData.getInstance().updateByIdAndField(cmds[2],cmds[1],newText);
+                    //CVData.getInstance().updateByIdAndField(cmds[2],cmds[1],newText);
                     CVData.getInstance().modelChanged();
                 } 
                 break;
             case "delete":
                 System.out.println("Deleting user ..." + cmds[1]);
-                CVData.getInstance().deleteUserById(cmds[1]);
+               // CVData.getInstance().deleteUserById(cmds[1]);
                 CVData.getInstance().modelChanged();
                 break;
             default:

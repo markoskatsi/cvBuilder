@@ -6,7 +6,6 @@ package cvbuilder;
 
 import cvbuilder.model.CVData;
 import cvbuilder.view.MainViewer;
-import java.util.ArrayList;
 
 /**
  *
@@ -20,10 +19,6 @@ public class App {
     
     public static void main(String[] args) {
         //read in the data
-        CVData ug = CVData.getInstance();
-        ug.readCSV("userprofile.csv");
         MainViewer mainView = MainViewer.getInstance(); 
-    }
-    public static ArrayList<String> names = new ArrayList();
-    
+    }    
 }

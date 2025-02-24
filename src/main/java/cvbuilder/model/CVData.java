@@ -22,7 +22,9 @@ public class CVData {
     private static CVData instance;
     private ArrayList<Observer> observers = new ArrayList<>();
     
-        private ArrayList<String> userNames;
+    private ArrayList<String> userNames = new ArrayList();
+    private ArrayList<String> userTitles = new ArrayList();
+    private ArrayList<String> userEmails = new ArrayList();
 
     /**
      * Get the value of userName
@@ -53,7 +55,7 @@ public class CVData {
     
     private CVData(){
     
-        this.loadDataFromCSVFile("userprofile.csv");
+        this.loadDataFromCSVFile("data/cv_repo_2.csv");
     }
 
 //    //helper method to delete User bu the User.id field
@@ -82,55 +84,50 @@ public class CVData {
                 String cSVline = in.readLine();
                 
                 String[] values = cSVline.split(",");
-                //﻿Section,Sub-Section,Variants
-                //Format 1: User,Name,Scheherazade Taylor,SJ Taylor,Shaz Taylor
-                //Format 2: User,Title,Ms.,Miss
-                //Format 3: User,Email,strongshaz@bob.com,gmail_account@gmail.com,k1234567@kingston.ac.uk
                 switch (values[0].toLowerCase()) {
                     case "user":  
                         switch (values[1].toLowerCase()) {
                             case "name": 
-                                
+                                //Format 1: User,Name,Scheherazade Taylor,SJ Taylor,Shaz Taylor
+                                for (int i=2; i<values.length; i++) {
+                                    userNames.add(values[i]);
+                                    System.out.println(values[i]);
+                                }
+                                break;
+                            case "title":
+                                //Format 2: User,Title,Ms.,Miss
+                                for (int i=2; i<values.length; i++) {
+                                    userTitles.add(values[i]);
+                                }
+                            case "email":
+                                //Format 3: User,Email,strongshaz@bob.com,gmail_account@gmail.com,k1234567@kingston.ac.uk
+                                for (int i=2; i<values.length; i++) {
+                                    userEmails.add(values[i]);
+                                }
                         }
                 }
             }
         } catch (java.io.IOException e) {
             e.printStackTrace();
         }
+        System.out.println(userNames);
+        System.out.println(userTitles);
+        System.out.println(userEmails);
     }
     
-    public void readCSV(String filename) {
-        users.clear();
-        
-        try(BufferedReader br = new BufferedReader(new FileReader(filename));)
-        { 
-            String line;
-            while((line = br.readLine()) != null )
-            {
-                String[] info = line.split(",");
-                users.add(new User(info[0], info[1],info[2],info[3]));
-            }
-        }
-        catch(Exception e)
-        {
-            e.printStackTrace();
-        }
-        
-    }
-    
-    public void writeCSV(String filename) {
-        try (PrintWriter writer = new PrintWriter(new FileWriter(filename))) 
-        {
-            for (User u : users) 
-            {
-                writer.println(u.getTitle() + "," + u.getName() + "," + u.getEmail());
-            }
-            System.out.println("File saved!"); //testing it ran
-        }
-        catch (Exception e) 
-        {
-            e.printStackTrace();
-        }
-    }
+//    public void writeCSV(String filename) {
+//        try (PrintWriter writer = new PrintWriter(new FileWriter(filename))) 
+//        {
+//            for (User u : users) 
+//            {
+//                writer.println(u.getTitle() + "," + u.getName() + "," + u.getEmail());
+//            }
+//            System.out.println("File saved!"); //testing it ran
+//        }
+//        catch (Exception e) 
+//        {
+//            e.printStackTrace();
+//        }
+    //}
     
 }

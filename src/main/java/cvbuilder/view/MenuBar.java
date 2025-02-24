@@ -92,7 +92,7 @@ public class MenuBar extends JMenuBar implements ActionListener{
                 int returnVal = chooser.showOpenDialog(null);
                 if(returnVal==JFileChooser.APPROVE_OPTION) {
                     file = chooser.getSelectedFile();
-                    CVData.getInstance().readCSV("userprofile.csv");
+                    //CVData.getInstance().readCSV("userprofile.csv");
                     MainViewer.getInstance().createTabbedPane();
                 }
                 break;
@@ -100,7 +100,7 @@ public class MenuBar extends JMenuBar implements ActionListener{
                 System.exit(0);
                 break;
             case "SaveFile":
-                CVData.getInstance().writeCSV(file.getAbsolutePath());
+                //CVData.getInstance().writeCSV(file.getAbsolutePath());
                 break;
                 
         }

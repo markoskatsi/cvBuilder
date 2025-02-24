@@ -4,7 +4,6 @@
  */
 package cvbuilder.view;
 
-import cvbuilder.model.User;
 import cvbuilder.model.CVData;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
@@ -46,25 +45,23 @@ public class RowPanel extends JPanel implements ActionListener{
     private JRadioButton jrb;
     private JButton editButton;
     private JButton deleteButton;
-    private User model;   
     
-    public RowPanel(User model, String name){
-        this.model = model;
+    public RowPanel(CVData model, String name){
         //attribute of user the row panel is repsonsible for
         this.setName(name);
         
         
-        switch(this.getName()) {
-            case "Title":
-                jrb = new JRadioButton(model.getTitle());
-                    break;
-            case "Email":
-                jrb = new JRadioButton(model.getEmail());
-                    break;
-            case "Name":
-                jrb = new JRadioButton(model.getName());
-                    break;        
-        }
+//        switch(this.getName()) {
+//            case "Title":
+//                jrb = new JRadioButton(CVData.getTitle());
+//                    break;
+//            case "Email":
+//                jrb = new JRadioButton(CVData.getEmail());
+//                    break;
+//            case "Name":
+//                jrb = new JRadioButton(model.getName());
+//                    break;        
+//        }
         
         
         
@@ -105,36 +102,36 @@ public class RowPanel extends JPanel implements ActionListener{
                     break;        
         }
             
-            if (newValue != null) 
-            {
-                //setting the model values depending on what has been changed by the user
-                System.out.println("User input: "+newValue);
-                
-                switch (this.getName()) {
-                    case "Title":
-                        model.setTitle(newValue);
-                        this.getJrb().setText(model.getTitle());
-                        break;
-                    case "Email":
-                        model.setEmail(newValue);
-                        this.getJrb().setText(model.getEmail());
-                        break;
-                    case "Name":
-                        model.setName(newValue);
-                        this.getJrb().setText(model.getName());
-                        break;
-        }
-                jrb.setText(newValue);
-                //printing out tabbed pane users after change
-                for (User u : CVData.getInstance().getUsers()) 
-                    {
-                        System.out.println(u.getName());
-                    }
-            }
-            else 
-            {
-                System.out.println("User cancelled the input.");
-            }    
+//            if (newValue != null) 
+//            {
+//                //setting the model values depending on what has been changed by the user
+//                System.out.println("User input: "+newValue);
+//                
+//                switch (this.getName()) {
+//                    case "Title":
+//                        model.setTitle(newValue);
+//                        this.getJrb().setText(model.getTitle());
+//                        break;
+//                    case "Email":
+//                        model.setEmail(newValue);
+//                        this.getJrb().setText(model.getEmail());
+//                        break;
+//                    case "Name":
+//                        model.setName(newValue);
+//                        this.getJrb().setText(model.getName());
+//                        break;
+//        }
+//                jrb.setText(newValue);
+////                //printing out tabbed pane users after change
+////                for (User u : CVData.getInstance().getUsers()) 
+////                    {
+////                        System.out.println(u.getName());
+////                    }
+//            }
+//            else 
+//            {
+//                System.out.println("User cancelled the input.");
+//            }    
             //System.out.println(CVData.getInstance().getUsers());
             break;
             
@@ -142,18 +139,18 @@ public class RowPanel extends JPanel implements ActionListener{
             int response = JOptionPane.showConfirmDialog(null,"Would you like to delete user?");
             if (response==JOptionPane.YES_OPTION) 
             {
-                CVData.getInstance().getUsers().remove(model);
+               // CVData.getInstance().getUsers().remove(model);
                 MainViewer.getInstance().createTabbedPane();
             }
-            System.out.println(CVData.getInstance().getUsers());
+            //System.out.println(CVData.getInstance().getUsers());
             break;
-            case "Radio":
-                //need to idnetify which row it is on
-                int index = CVData.getInstance().getUsers().indexOf(this.model);
-                for (EditPanel ep : MainViewer.getInstance().getUpbTabs().getEps()) {
-                    ep.getRowPanels().get(index).getJrb().setSelected(true);
-                }
-                        break;
+//            case "Radio":
+//                //need to idnetify which row it is on
+//               // int index = CVData.getInstance().getUsers().indexOf(this.model);
+//                for (EditPanel ep : MainViewer.getInstance().getUpbTabs().getEps()) {
+//                    ep.getRowPanels().get(index).getJrb().setSelected(true);
+//                }
+//                        break;
         }
         
     }
