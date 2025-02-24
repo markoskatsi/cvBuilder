@@ -5,7 +5,7 @@
 package cvbuilder.view;
 
 import cvbuilder.model.User;
-import cvbuilder.model.UserGroup;
+import cvbuilder.model.CVData;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -126,7 +126,7 @@ public class RowPanel extends JPanel implements ActionListener{
         }
                 jrb.setText(newValue);
                 //printing out tabbed pane users after change
-                for (User u : UserGroup.getInstance().getUsers()) 
+                for (User u : CVData.getInstance().getUsers()) 
                     {
                         System.out.println(u.getName());
                     }
@@ -135,21 +135,21 @@ public class RowPanel extends JPanel implements ActionListener{
             {
                 System.out.println("User cancelled the input.");
             }    
-            //System.out.println(UserGroup.getInstance().getUsers());
+            //System.out.println(CVData.getInstance().getUsers());
             break;
             
             case "Delete": 
             int response = JOptionPane.showConfirmDialog(null,"Would you like to delete user?");
             if (response==JOptionPane.YES_OPTION) 
             {
-                UserGroup.getInstance().getUsers().remove(model);
+                CVData.getInstance().getUsers().remove(model);
                 MainViewer.getInstance().createTabbedPane();
             }
-            System.out.println(UserGroup.getInstance().getUsers());
+            System.out.println(CVData.getInstance().getUsers());
             break;
             case "Radio":
                 //need to idnetify which row it is on
-                int index = UserGroup.getInstance().getUsers().indexOf(this.model);
+                int index = CVData.getInstance().getUsers().indexOf(this.model);
                 for (EditPanel ep : MainViewer.getInstance().getUpbTabs().getEps()) {
                     ep.getRowPanels().get(index).getJrb().setSelected(true);
                 }

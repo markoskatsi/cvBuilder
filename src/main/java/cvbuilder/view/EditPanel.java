@@ -5,7 +5,7 @@
 package cvbuilder.view;
 
 import cvbuilder.model.User;
-import cvbuilder.model.UserGroup;
+import cvbuilder.model.CVData;
 import java.awt.GridLayout;
 import java.util.ArrayList;
 import javax.swing.ButtonGroup;
@@ -30,7 +30,7 @@ public class EditPanel extends JPanel {
         this.setBorder(panelBorder2);
         this.setLayout(new GridLayout(0,1));
         
-        for (User u : UserGroup.getInstance().getUsers())
+        for (User u : CVData.getInstance().getUsers())
         {
 
             RowPanel rowPanel = new RowPanel(u, this.getName());
