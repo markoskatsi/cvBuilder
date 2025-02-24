@@ -4,7 +4,6 @@
  */
 package cvbuilder;
 
-import cvbuilder.model.CVData;
 import cvbuilder.view.MainViewer;
 
 /**

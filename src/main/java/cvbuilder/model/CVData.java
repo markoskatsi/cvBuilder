@@ -18,22 +18,23 @@ import java.util.ArrayList;
 
 public class CVData {
     
-    //private ArrayList<User> users = new ArrayList();
-    private static CVData instance;
-    private ArrayList<Observer> observers = new ArrayList<>();
-    
-    private ArrayList<String> userNames = new ArrayList();
-    private ArrayList<String> userTitles = new ArrayList();
-    private ArrayList<String> userEmails = new ArrayList();
+    private ArrayList<String> userNames = new ArrayList<>();
+    private ArrayList<String> userTitles = new ArrayList<>();
+    private ArrayList<String> userEmails = new ArrayList<>();
 
-    /**
-     * Get the value of userName
-     *
-     * @return the value of userName
-     */
+    public ArrayList<String> getUserTitles() {
+        return userTitles;
+    }
+
+    public ArrayList<String> getUserEmails() {
+        return userEmails;
+    }
+   
     public ArrayList<String> getUserNames() {
         return userNames;
     }
+    
+    private ArrayList<Observer> observers = new ArrayList<>();
     
     public ArrayList<Observer> getObservers() {
         return observers;
@@ -44,6 +45,8 @@ public class CVData {
         o.update();
         }
     }
+    
+    private static CVData instance;
 
     public static CVData getInstance(){
         if (instance==null){
@@ -98,21 +101,22 @@ public class CVData {
                                 //Format 2: User,Title,Ms.,Miss
                                 for (int i=2; i<values.length; i++) {
                                     userTitles.add(values[i]);
+                                    System.out.println(values[i]);
                                 }
+                                break;
                             case "email":
                                 //Format 3: User,Email,strongshaz@bob.com,gmail_account@gmail.com,k1234567@kingston.ac.uk
                                 for (int i=2; i<values.length; i++) {
                                     userEmails.add(values[i]);
+                                    System.out.println(values[i]);
                                 }
+                                break;
                         }
                 }
             }
         } catch (java.io.IOException e) {
             e.printStackTrace();
         }
-        System.out.println(userNames);
-        System.out.println(userTitles);
-        System.out.println(userEmails);
     }
     
 //    public void writeCSV(String filename) {

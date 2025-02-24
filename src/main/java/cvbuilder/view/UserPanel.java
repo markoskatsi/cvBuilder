@@ -17,7 +17,7 @@ import javax.swing.JRadioButton;
  *
  * @author marko
  */
-public class RowPanel extends JPanel implements ActionListener{
+public class UserPanel extends JPanel implements ActionListener{
 
     public JRadioButton getJrb() {
         return jrb;
@@ -45,24 +45,14 @@ public class RowPanel extends JPanel implements ActionListener{
     private JRadioButton jrb;
     private JButton editButton;
     private JButton deleteButton;
+    private CVData model;
     
-    public RowPanel(CVData model, String name){
+    public UserPanel(String name, String value){
         //attribute of user the row panel is repsonsible for
         this.setName(name);
         
         
-//        switch(this.getName()) {
-//            case "Title":
-//                jrb = new JRadioButton(CVData.getTitle());
-//                    break;
-//            case "Email":
-//                jrb = new JRadioButton(CVData.getEmail());
-//                    break;
-//            case "Name":
-//                jrb = new JRadioButton(model.getName());
-//                    break;        
-//        }
-        
+        jrb = new JRadioButton(value);
         
         
         editButton = new JButton("Edit");

@@ -16,7 +16,7 @@ import javax.swing.JTabbedPane;
 public class MainViewer extends JFrame{
     private static MainViewer instance;
     
-    private EditPanel nameEdit;
+    private UserRow nameEdit;
     
     UserProfileBuilderTabs upbTabs;
     private JPanel coreTab;
@@ -78,6 +78,8 @@ public class MainViewer extends JFrame{
         
         //this.createEditPanel();
         this.createTabbedPane();
+        //this.createEditPanel();
+        
 
         this.setVisible(true);
     }
@@ -88,22 +90,16 @@ public class MainViewer extends JFrame{
         this.remove(upbTabs);
     }
 
-    // Create the UserProfileBuilderTabs which holds individual user profile tabs
     upbTabs = new UserProfileBuilderTabs();
     coreTab = new JPanel();
 
-    // Create a new JTabbedPane which will hold the "User" tab
     JTabbedPane UserTabbedPane = new JTabbedPane();
 
-    // Add the UserProfileBuilderTabs to a new tab named "User" in the main tabbed pane
     UserTabbedPane.addTab("User", upbTabs);
     UserTabbedPane.addTab("Core Competencies", coreTab);
 
-    // Add the main tabbed pane to the JFrame
     this.add(UserTabbedPane, BorderLayout.CENTER);
     
-
-    // Revalidate and repaint to ensure UI updates correctly
     this.revalidate();
     this.repaint();
 }
@@ -114,8 +110,8 @@ public class MainViewer extends JFrame{
         if (nameEdit != null) {
             this.remove(nameEdit);
         }
-        //create EditPanel with RowPanels   
-        nameEdit = new EditPanel("Name");
+        //create UserRow with RowPanels   
+        nameEdit = new UserRow("title");
         this.add(nameEdit,BorderLayout.CENTER);
         this.revalidate();
     }
