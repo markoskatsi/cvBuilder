@@ -15,11 +15,23 @@ import java.util.ArrayList;
  *
  * @author marko
  */
+
 public class CVData {
     
-    private ArrayList<User> users = new ArrayList();
+    //private ArrayList<User> users = new ArrayList();
     private static CVData instance;
     private ArrayList<Observer> observers = new ArrayList<>();
+    
+        private ArrayList<String> userNames;
+
+    /**
+     * Get the value of userName
+     *
+     * @return the value of userName
+     */
+    public ArrayList<String> getUserNames() {
+        return userNames;
+    }
     
     public ArrayList<Observer> getObservers() {
         return observers;
@@ -39,38 +51,30 @@ public class CVData {
     }
 
     
-    /*private CVData(){
-    }
-        this.loadDataFromCSVFile("userprofile.csv")
-    }*/
+    private CVData(){
     
-    public ArrayList<User> getUsers() {
-        return users;
+        this.loadDataFromCSVFile("userprofile.csv");
     }
 
-    public void setUsers(ArrayList<User> users) {
-        this.users = users;
-    }
-    
-    //helper method to delete User bu the User.id field
-    public void deleteUserById(String id) {
-        for (User u: users) {
-            if (u.getId().equals(id)) {
-                users.remove(u);
-                break;
-            }
-        }
-    }
-    
-    //helper method to update a User based on User.id and a new value
-    public void updateByIdAndField(String id, String fieldName, String newValue) {
-        for (User u : users) {
-            if(u.getId().equals(id)) {
-                User.set(fieldName, u, newValue);
-                break;
-            }
-        }
-    }
+//    //helper method to delete User bu the User.id field
+//    public void deleteUserById(String id) {
+//        for (User u: users) {
+//            if (u.getId().equals(id)) {
+//                users.remove(u);
+//                break;
+//            }
+//        }
+//    }
+//    
+//    //helper method to update a User based on User.id and a new value
+//    public void updateByIdAndField(String id, String fieldName, String newValue) {
+//        for (User u : users) {
+//            if(u.getId().equals(id)) {
+//                User.set(fieldName, u, newValue);
+//                break;
+//            }
+//        }
+//    }
     
     public void loadDataFromCSVFile(String filename) {
         try(BufferedReader in = new BufferedReader(new FileReader(filename));) {
@@ -78,14 +82,17 @@ public class CVData {
                 String cSVline = in.readLine();
                 
                 String[] values = cSVline.split(",");
-                
-                User u = new User();
-                u.setId(values[0]);
-                u.setTitle(values[1]);
-                u.setName(values[2]);
-                u.setEmail(values[3]);
-                
-                this.users.add(u);
+                //﻿Section,Sub-Section,Variants
+                //Format 1: User,Name,Scheherazade Taylor,SJ Taylor,Shaz Taylor
+                //Format 2: User,Title,Ms.,Miss
+                //Format 3: User,Email,strongshaz@bob.com,gmail_account@gmail.com,k1234567@kingston.ac.uk
+                switch (values[0].toLowerCase()) {
+                    case "user":  
+                        switch (values[1].toLowerCase()) {
+                            case "name": 
+                                
+                        }
+                }
             }
         } catch (java.io.IOException e) {
             e.printStackTrace();

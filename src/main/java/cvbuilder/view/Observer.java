@@ -9,8 +9,7 @@ package cvbuilder.view;
  * @author marko
  */
 public class Observer {
-    public void update() {
-        
-    }
+    public void update()
+    {}
 
 }
