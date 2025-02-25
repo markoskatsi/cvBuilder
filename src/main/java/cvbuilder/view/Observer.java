@@ -11,5 +11,4 @@ package cvbuilder.view;
 public class Observer {
     public void update()
     {}
-
 }

@@ -48,12 +48,9 @@ public class UserPanel extends JPanel implements ActionListener{
     private CVData model;
     
     public UserPanel(String name, String value){
-        //attribute of user the row panel is repsonsible for
         this.setName(name);
         
-        
         jrb = new JRadioButton(value);
-        
         
         editButton = new JButton("Edit");
         editButton.addActionListener(this);
