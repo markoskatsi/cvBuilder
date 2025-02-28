@@ -47,6 +47,7 @@ public class UserRow extends JPanel {
                     userPanel.setActionListener();
                     this.add(userPanel);
                 }
+                this.add(new AddUser());
                 break;
             case "name":  
                 for (String n : CVData.getInstance().getUserNames()) {
@@ -55,6 +56,7 @@ public class UserRow extends JPanel {
                     userPanel.setActionListener();
                     this.add(userPanel);
                 }
+                this.add(new AddUser());
                 break;
             case "email":  
                 for (String email : CVData.getInstance().getUserEmails()) {
@@ -63,6 +65,7 @@ public class UserRow extends JPanel {
                     userPanel.setActionListener();
                     this.add(userPanel);
                 }
+                this.add(new AddUser());
                 break;
         }
         

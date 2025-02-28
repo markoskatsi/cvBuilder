@@ -5,9 +5,11 @@
 package cvbuilder.view;
 
 import java.awt.BorderLayout;
+import java.awt.FlowLayout;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
+import javax.swing.JTextField;
 
 /**
  *
@@ -20,7 +22,7 @@ public class MainViewer extends JFrame{
     
     UserProfileBuilderTabs upbTabs;
     private JPanel coreTab;
-
+    
     public UserProfileBuilderTabs getUpbTabs() {
         return upbTabs;
     }
@@ -89,7 +91,8 @@ public class MainViewer extends JFrame{
     if (upbTabs != null) {
         this.remove(upbTabs);
     }
-
+    
+    //tabbed panes
     upbTabs = new UserProfileBuilderTabs();
     coreTab = new JPanel();
 
@@ -97,9 +100,11 @@ public class MainViewer extends JFrame{
 
     UserTabbedPane.addTab("User", upbTabs);
     UserTabbedPane.addTab("Core Competencies", coreTab);
+    
+    //add textfield and button
+    
 
     this.add(UserTabbedPane, BorderLayout.CENTER);
-    
     this.revalidate();
     this.repaint();
 }
