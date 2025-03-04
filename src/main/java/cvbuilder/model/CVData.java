@@ -61,25 +61,55 @@ public class CVData {
         this.loadDataFromCSVFile("data/cv_repo_2.csv");
     }
 
-//    //helper method to delete User bu the User.id field
-//    public void deleteUserById(String id) {
-//        for (User u: users) {
-//            if (u.getId().equals(id)) {
-//                users.remove(u);
-//                break;
-//            }
-//        }
-//    }
-//    
-//    //helper method to update a User based on User.id and a new value
-//    public void updateByIdAndField(String id, String fieldName, String newValue) {
-//        for (User u : users) {
-//            if(u.getId().equals(id)) {
-//                User.set(fieldName, u, newValue);
-//                break;
-//            }
-//        }
-//    }
+    public void deleteUserById(String field, String value) {
+    switch (field.toLowerCase()) {
+        case "name":
+            for (int i = 0; i < userNames.size(); i++) {
+                if (userNames.get(i).equals(value)) {
+                    userNames.remove(i);
+                    userTitles.remove(i);
+                    userEmails.remove(i);
+                    System.out.println("Deleted user by name: " + value);
+                    break;
+                }
+            }
+            break;
+        case "title":
+            for (int i = 0; i < userTitles.size(); i++) {
+                if (userTitles.get(i).equals(value)) {
+                    userNames.remove(i);
+                    userTitles.remove(i);
+                    userEmails.remove(i);
+                    System.out.println("Deleted user by title: " + value);
+                    break;
+                }
+            }
+            break;
+        case "email":
+            for (int i = 0; i < userEmails.size(); i++) {
+                if (userEmails.get(i).equals(value)) {
+                    userNames.remove(i);
+                    userTitles.remove(i);
+                    userEmails.remove(i);
+                    System.out.println("Deleted user by email: " + value);
+                    break;
+                }
+            }
+            break;
+        default:
+            System.out.println("Invalid field: " + field);
+            break;
+    }
+}
+
+    
+    public void updateUser() {
+       
+    }
+    
+     public void deleteUser() {
+       
+    }
     
     public void loadDataFromCSVFile(String filename) {
         try(BufferedReader in = new BufferedReader(new FileReader(filename));) {

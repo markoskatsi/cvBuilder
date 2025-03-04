@@ -18,7 +18,7 @@ import javax.swing.JTextField;
 public class MainViewer extends JFrame{
     private static MainViewer instance;
     
-    private UserRow nameEdit;
+    private UserSectionRow nameEdit;
     
     UserProfileBuilderTabs upbTabs;
     private JPanel coreTab;
@@ -115,8 +115,8 @@ public class MainViewer extends JFrame{
         if (nameEdit != null) {
             this.remove(nameEdit);
         }
-        //create UserRow with RowPanels   
-        nameEdit = new UserRow("title");
+        //create UserSectionRow with RowPanels   
+        nameEdit = new UserSectionRow("title");
         this.add(nameEdit,BorderLayout.CENTER);
         this.revalidate();
     }

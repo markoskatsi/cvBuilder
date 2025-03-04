@@ -12,24 +12,24 @@ import javax.swing.JTabbedPane;
  * @author marko
  */
 public class UserProfileBuilderTabs extends JTabbedPane {
-    ArrayList<UserRow> eps = new ArrayList();
+    ArrayList<UserSectionRow> eps = new ArrayList();
 
-    public ArrayList<UserRow> getEps() {
+    public ArrayList<UserSectionRow> getEps() {
         return eps;
     }
 
-    public void setEps(ArrayList<UserRow> eps) {
+    public void setEps(ArrayList<UserSectionRow> eps) {
         this.eps = eps;
     }
     
     public UserProfileBuilderTabs() {
-        UserRow namePanel = new UserRow("Name");
-        UserRow titlePanel = new UserRow("Title");
-        UserRow emailPanel = new UserRow("Email");
+        UserSectionRow namePanel = new UserSectionRow("Name");
+        UserSectionRow titlePanel = new UserSectionRow("Title");
+        UserSectionRow emailPanel = new UserSectionRow("Email");
         this.eps.add(titlePanel);
         this.eps.add(namePanel);
         this.eps.add(emailPanel);
-        for (UserRow ep : this.eps) {
+        for (UserSectionRow ep : this.eps) {
             this.add(ep);
         }
     }

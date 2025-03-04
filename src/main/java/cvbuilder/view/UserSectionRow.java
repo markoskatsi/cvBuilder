@@ -15,12 +15,12 @@ import javax.swing.border.TitledBorder;
  *
  * @author marko
  */
-public class UserRow extends JPanel {
+public class UserSectionRow extends JPanel {
     
     ButtonGroup bg = new ButtonGroup();
-    ArrayList<UserPanel> userPanels = new ArrayList();
+    ArrayList<UserSectionPanel> userPanels = new ArrayList();
     
-    public UserRow(String name)
+    public UserSectionRow(String name)
     {
         this.setName(name);
         //Border panelBorder = BorderFactory.createTitledBorder("Name");
@@ -32,7 +32,7 @@ public class UserRow extends JPanel {
 //        for (CVData u : CVData.getInstance().getUserNames())
 //        {
 //
-//            UserPanel rowPanel = new UserPanel(u, this.getName());
+//            UserSectionPanel rowPanel = new UserSectionPanel(u, this.getName());
 //            rowPanels.add(rowPanel);
 //            rowPanel.setActionListener();
 //            bg.add(rowPanel.getJrb());
@@ -42,7 +42,7 @@ public class UserRow extends JPanel {
         switch (name.toLowerCase()) {
             case "title": 
                 for (String title : CVData.getInstance().getUserTitles()) {
-                    UserPanel userPanel = new UserPanel(name, title);
+                    UserSectionPanel userPanel = new UserSectionPanel(name, title);
                     userPanels.add(userPanel);
                     userPanel.setActionListener();
                     this.add(userPanel);
@@ -51,7 +51,7 @@ public class UserRow extends JPanel {
                 break;
             case "name":  
                 for (String n : CVData.getInstance().getUserNames()) {
-                    UserPanel userPanel = new UserPanel(name, n);
+                    UserSectionPanel userPanel = new UserSectionPanel(name, n);
                     userPanels.add(userPanel);
                     userPanel.setActionListener();
                     this.add(userPanel);
@@ -60,7 +60,7 @@ public class UserRow extends JPanel {
                 break;
             case "email":  
                 for (String email : CVData.getInstance().getUserEmails()) {
-                    UserPanel userPanel = new UserPanel(name, email);
+                    UserSectionPanel userPanel = new UserSectionPanel(name, email);
                     userPanels.add(userPanel);
                     userPanel.setActionListener();
                     this.add(userPanel);
@@ -71,11 +71,11 @@ public class UserRow extends JPanel {
         
     }
 
-    public ArrayList<UserPanel> getRowPanels() {
+    public ArrayList<UserSectionPanel> getRowPanels() {
         return userPanels;
     }
 
-    public void setRowPanels(ArrayList<UserPanel> rowPanels) {
+    public void setRowPanels(ArrayList<UserSectionPanel> rowPanels) {
         this.userPanels = rowPanels;
     }
     
