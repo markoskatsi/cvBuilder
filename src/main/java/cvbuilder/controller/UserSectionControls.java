@@ -10,6 +10,7 @@ import cvbuilder.view.UserSectionPanel;
 import cvbuilder.view.UserSectionRow;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 /**
@@ -18,45 +19,42 @@ import javax.swing.JOptionPane;
  */
 public class UserSectionControls implements ActionListener{
 
-    public UserSectionRow getView() {
+    public UserSectionPanel getView() {
         return view;
     }
 
-    public void setView(UserSectionRow view) {
+    public void setView(UserSectionPanel view) {
         this.view = view;
     }
 
-    UserSectionRow view;
+    UserSectionPanel view;
     
-    public UserSectionControls(UserSectionRow usr) {
+    public UserSectionControls(UserSectionPanel usr) {
         this.view = usr;
     }
     
     @Override
     public void actionPerformed(ActionEvent s) {
         //System.out.println(s.getActionCommand());
-        UserSectionRow sectionPanel = (UserSectionRow) view.getParent();
+        UserSectionRow sectionRow = (UserSectionRow) view.getParent();
         
-//        String oldText = view.getErb().getText();
-        String[] cmds = s.getActionCommand().split("-");
-        switch(cmds[0]) {
+        String oldText = view.getJrb().getText();
+        ArrayList<String> data = sectionRow.getData();
+        switch(s.getActionCommand()) {
             case "edit":
-                //pop up dialog and process user input
-                //to do put current text into dialog
-                System.out.println("Editing user: " + cmds[2]);
                 String newText = JOptionPane.showInputDialog(
                         MainViewer.getInstance(),
-                        "Enter the new value for: " + cmds[1]
+                        "Enter the new value for: ", oldText
                 );
                 //handle blank/cancel
                 if (newText != null & !newText.isBlank()) {
-                    //CVData.getInstance().updateByIdAndField(cmds[2],cmds[1],newText);
-                    CVData.getInstance().modelChanged();
+                    data.set(data.indexOf(oldText), newText);
                 } 
+                
+                CVData.getInstance().modelChanged();
                 break;
             case "delete":
-                System.out.println("Deleting user: " + cmds[2]);
-                CVData.getInstance().deleteUserById(cmds[1], cmds[3]);
+                data.remove(oldText);
                 CVData.getInstance().modelChanged();
                 break;
             default:

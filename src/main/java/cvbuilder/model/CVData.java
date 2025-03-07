@@ -21,6 +21,8 @@ public class CVData {
     private ArrayList<String> userNames = new ArrayList<>();
     private ArrayList<String> userTitles = new ArrayList<>();
     private ArrayList<String> userEmails = new ArrayList<>();
+    private ArrayList<String> coreSkills = new ArrayList<>();
+    private ArrayList<String> profileStatements = new ArrayList<>();
 
     public ArrayList<String> getUserTitles() {
         return userTitles;
@@ -141,6 +143,22 @@ public class CVData {
                                     System.out.println(values[i]);
                                 }
                                 break;
+                        }
+                    case "core competencies":
+                        switch (values[1].toLowerCase()) {
+                            case "skills": 
+                                for (int i=2; i<values.length; i++) {
+                                    String skills = values[i].replace("////", ",");
+                                    coreSkills.add(skills);
+                                    System.out.println(skills);
+                                }
+                                break;
+                            case "profile statement":
+                                for (int i=2; i<values.length; i++) {
+                                    String statement = values[i].replace("////", ",");
+                                    profileStatements.add(statement);
+                                    System.out.println(statement);
+                                }
                         }
                 }
             }

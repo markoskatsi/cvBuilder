@@ -65,15 +65,15 @@ public class UserSectionPanel extends JPanel implements ActionListener{
         
         jrb = new JRadioButton(value);
         
-//        UserSectionControls controller = new UserSectionControls(this);
+       UserSectionControls controller = new UserSectionControls(this);
 
         
         editButton = new JButton("Edit");
-//        editButton.addActionListener(controller);
+        editButton.addActionListener(controller);
         editButton.setActionCommand("edit");
 
         deleteButton = new JButton("Delete");
-//        deleteButton.addActionListener(controller);
+         deleteButton.addActionListener(controller);
         deleteButton.setActionCommand("delete");
         
         
@@ -91,7 +91,6 @@ public class UserSectionPanel extends JPanel implements ActionListener{
         String ac = e.getActionCommand();
         String newValue = null;
 
-//        new UserSectionControls().actionPerformed(e);
         
     }
 

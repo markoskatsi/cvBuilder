@@ -17,6 +17,16 @@ import javax.swing.border.TitledBorder;
  */
 public class UserSectionRow extends JPanel {
     
+     public ArrayList<String> getData() {
+        return data;
+    }
+
+    public void setData(ArrayList<String> data) {
+        this.data = data;
+    }
+
+    private ArrayList<String> data;
+    
     ButtonGroup bg = new ButtonGroup();
     ArrayList<UserSectionPanel> userPanels = new ArrayList();
     
