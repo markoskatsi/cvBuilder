@@ -6,8 +6,8 @@ package cvbuilder.controller;
 
 import cvbuilder.model.CVData;
 import cvbuilder.view.MainViewer;
-import cvbuilder.view.UserSectionPanel;
 import cvbuilder.view.UserSectionRow;
+import cvbuilder.view.UserSectionPanel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -19,27 +19,28 @@ import javax.swing.JOptionPane;
  */
 public class UserSectionControls implements ActionListener{
 
-    public UserSectionPanel getView() {
+    public UserSectionRow getView() {
         return view;
     }
 
-    public void setView(UserSectionPanel view) {
+    public void setView(UserSectionRow view) {
         this.view = view;
     }
 
-    UserSectionPanel view;
+    UserSectionRow view;
     
-    public UserSectionControls(UserSectionPanel usr) {
+    public UserSectionControls(UserSectionRow usr) {
         this.view = usr;
     }
     
     @Override
     public void actionPerformed(ActionEvent s) {
-        //System.out.println(s.getActionCommand());
-        UserSectionRow sectionRow = (UserSectionRow) view.getParent();
+        UserSectionPanel sectionPanel = (UserSectionPanel) view.getParent();
         
         String oldText = view.getJrb().getText();
-        ArrayList<String> data = sectionRow.getData();
+        
+        ArrayList<String> data = sectionPanel.getData();
+        
         switch(s.getActionCommand()) {
             case "edit":
                 String newText = JOptionPane.showInputDialog(
@@ -49,12 +50,17 @@ public class UserSectionControls implements ActionListener{
                 //handle blank/cancel
                 if (newText != null & !newText.isBlank()) {
                     data.set(data.indexOf(oldText), newText);
+                    view.getJrb().setText(newText);
+                    System.out.println(data);
                 } 
                 
                 CVData.getInstance().modelChanged();
                 break;
             case "delete":
                 data.remove(oldText);
+                sectionPanel.remove(view);
+                sectionPanel.revalidate();
+                sectionPanel.repaint();
                 CVData.getInstance().modelChanged();
                 break;
             default:

@@ -4,6 +4,7 @@
  */
 package cvbuilder.view;
 
+import cvbuilder.controller.AddUserControls;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -15,7 +16,7 @@ import javax.swing.JTextField;
  *
  * @author marko
  */
-public class AddUser extends JPanel implements ActionListener{
+public class AddUser extends JPanel{
     
     private JTextField tf;
     private JButton jb;
@@ -41,19 +42,12 @@ public class AddUser extends JPanel implements ActionListener{
         tf = new JTextField(15);
         jb = new JButton("Add");
         
-        jb.setActionCommand("submit");
-        jb.addActionListener(this);
+        AddUserControls controller = new AddUserControls();
+        
+        jb.setActionCommand("add");
+        jb.addActionListener(controller);
         
         this.add(tf);
         this.add(jb);
-    }
-    
-    public void actionPerformed(ActionEvent e)
-    {
-        String s = e.getActionCommand();
-        if (s.equals("submit")) {
-            System.out.println(tf.getText());
-            tf.setText("");
-        }
     }
 }

@@ -4,25 +4,24 @@
  */
 package cvbuilder.view;
 
-import cvbuilder.controller.UserSectionControls;
 import cvbuilder.model.CVData;
-import java.awt.FlowLayout;
-import java.awt.Graphics;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.GridLayout;
 import java.util.ArrayList;
-import javax.swing.JButton;
-import javax.swing.JOptionPane;
+import javax.swing.ButtonGroup;
 import javax.swing.JPanel;
-import javax.swing.JRadioButton;
+import javax.swing.border.TitledBorder;
 
 /**
  *
  * @author marko
  */
-public class UserSectionPanel extends JPanel implements ActionListener{
-
-    public ArrayList<String> getData() {
+public class UserSectionPanel extends JPanel {
+    
+    private ArrayList<String> data;
+    ButtonGroup bg = new ButtonGroup();
+    ArrayList<UserSectionRow> userPanels = new ArrayList();
+    
+     public ArrayList<String> getData() {
         return data;
     }
 
@@ -30,87 +29,67 @@ public class UserSectionPanel extends JPanel implements ActionListener{
         this.data = data;
     }
 
-    private ArrayList<String> data;
+    public ArrayList<UserSectionRow> getUserPanels() {
+        return userPanels;
+    }
     
-    public JRadioButton getJrb() {
-        return jrb;
-    }
-
-    public void setJrb(JRadioButton jrb) {
-        this.jrb = jrb;
-    }
-
-    public JButton getEditButton() {
-        return editButton;
-    }
-
-    public void setEditButton(JButton editButton) {
-        this.editButton = editButton;
-    }
-
-    public JButton getDeleteButton() {
-        return deleteButton;
-    }
-
-    public void setDeleteButton(JButton deleteButton) {
-        this.deleteButton = deleteButton;
-    }
-    private JRadioButton jrb;
-    private JButton editButton;
-    private JButton deleteButton;
-    private CVData model;
-    
-    public UserSectionPanel(String name, String value){
+    public UserSectionPanel(String name)
+    {
         this.setName(name);
+        this.setBorder(new TitledBorder(name));
+        this.setLayout(new GridLayout(0,1));
         
-        jrb = new JRadioButton(value);
-        
-       UserSectionControls controller = new UserSectionControls(this);
-
-        
-        editButton = new JButton("Edit");
-        editButton.addActionListener(controller);
-        editButton.setActionCommand("edit");
-
-        deleteButton = new JButton("Delete");
-         deleteButton.addActionListener(controller);
-        deleteButton.setActionCommand("delete");
-        
-        
-        this.setLayout(new FlowLayout());
-        this.add(jrb);
-        jrb.addActionListener(this);
-        jrb.setActionCommand("Radio");
-        this.add(editButton);
-        this.add(deleteButton);
-    }
-    
-    
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        String ac = e.getActionCommand();
-        String newValue = null;
-
-        
-    }
-
-//    @Override
-//    public final void update() {
-//        this.removeAll();
-//        
-//        bg = new ButtonGroup();
-//        
-//        for (String d : data) {
-//            var er = new UserRow(d);
-//            bg.add(er.getErb());
-//            this.add(er);
+//        for (CVData u : CVData.getInstance().getUserNames())
+//        {
+//
+//            UserSectionRow rowPanel = new UserSectionRow(u, this.getName());
+//            rowPanels.add(rowPanel);
+//            rowPanel.setActionListener();
+//            bg.add(rowPanel.getJrb());
+//            this.add(rowPanel);
 //        }
-//        this.repaint();
-//    }
-    
-    
-
-    public void setActionListener() {
-        editButton.addActionListener(this);
+        
+        switch (name.toLowerCase()) {
+            case "title": 
+                this.setData(CVData.getInstance().getUserTitles());
+                for (String title : CVData.getInstance().getUserTitles()) {
+                    UserSectionRow userPanel = new UserSectionRow(name, title);
+                    userPanels.add(userPanel);
+                    userPanel.setActionListener();
+                    this.add(userPanel);
+                }
+                this.add(new AddUser());
+                break;
+            case "name":
+                this.setData(CVData.getInstance().getUserNames());
+                for (String n : CVData.getInstance().getUserNames()) {
+                    UserSectionRow userPanel = new UserSectionRow(name, n);
+                    userPanels.add(userPanel);
+                    userPanel.setActionListener();
+                    this.add(userPanel);
+                }
+                this.add(new AddUser());
+                break;
+            case "email":  
+                this.setData(CVData.getInstance().getUserEmails());
+                for (String email : CVData.getInstance().getUserEmails()) {
+                    UserSectionRow userPanel = new UserSectionRow(name, email);
+                    userPanels.add(userPanel);
+                    userPanel.setActionListener();
+                    this.add(userPanel);
+                }
+                this.add(new AddUser());
+                break;
+        }
+        
     }
-}
+
+    public ArrayList<UserSectionRow> getRowPanels() {
+        return userPanels;
+    }
+
+    public void setRowPanels(ArrayList<UserSectionRow> rowPanels) {
+        this.userPanels = rowPanels;
+    }
+    
+} 

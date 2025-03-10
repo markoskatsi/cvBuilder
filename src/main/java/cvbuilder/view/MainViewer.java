@@ -5,11 +5,9 @@
 package cvbuilder.view;
 
 import java.awt.BorderLayout;
-import java.awt.FlowLayout;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
-import javax.swing.JTextField;
 
 /**
  *
@@ -18,16 +16,15 @@ import javax.swing.JTextField;
 public class MainViewer extends JFrame{
     private static MainViewer instance;
     
-    private UserSectionRow nameEdit;
-    
-    UserProfileBuilderTabs upbTabs;
+    private UserSectionPanel nameEdit;
+    UserSectionTabs upbTabs;
     private JPanel coreTab;
     
-    public UserProfileBuilderTabs getUpbTabs() {
+    public UserSectionTabs getUpbTabs() {
         return upbTabs;
     }
 
-    public void setUpbTabs(UserProfileBuilderTabs upbTabs) {
+    public void setUpbTabs(UserSectionTabs upbTabs) {
         this.upbTabs = upbTabs;
     }
     
@@ -42,47 +39,16 @@ public class MainViewer extends JFrame{
     private MainViewer() {
         //creating window
         this.setLayout(new BorderLayout());
-        this.setTitle("User Profile Builder");
+        this.setTitle("CV Builder");
         this.setSize(450, 250);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        
         // add menu bar
         MenuBar mb = new MenuBar();
         this.setJMenuBar(mb.getMb());
         
-                
-        /*//creating border and its layout
-        nameEdit = new JPanel();
-        Border panelBorder = BorderFactory.createTitledBorder("Name");
-        nameEdit.setBorder(panelBorder);
-        nameEdit.setLayout(new GridLayout(0,1));
-        this.add(nameEdit,BorderLayout.CENTER);
-        
-        //Adding all tabs
-        JTabbedPane tabs = new JTabbedPane();
-        id = new JPanel();
-        id.setBorder(BorderFactory.createTitledBorder("ID"));
-        id.setLayout(new GridLayout(0,1));
-        tabs.addTab("User ID", id);
-        
-        title = new JPanel();
-        title.setBorder(BorderFactory.createTitledBorder("Title"));
-        title.setLayout(new GridLayout(0,1));
-        tabs.addTab("User Title", title);
-        
-        tabs.addTab("User Name", nameEdit);
-        email = new JPanel();
-        email.setBorder(BorderFactory.createTitledBorder("Email"));
-        email.setLayout(new GridLayout(0,1));
-        tabs.addTab("User Email", email);
-        this.add(tabs);*/
-        
-        // Add the panels for each profile on username.csv
-        
-        //this.createEditPanel();
+        // Add the panels for each profile on cv_repo_2.csv
         this.createTabbedPane();
-        //this.createEditPanel();
-        
-
         this.setVisible(true);
     }
     
@@ -93,31 +59,27 @@ public class MainViewer extends JFrame{
     }
     
     //tabbed panes
-    upbTabs = new UserProfileBuilderTabs();
+    upbTabs = new UserSectionTabs();
     coreTab = new JPanel();
 
-    JTabbedPane UserTabbedPane = new JTabbedPane();
+    JTabbedPane mainTabs = new JTabbedPane();
+    mainTabs.addTab("User", upbTabs);
+    mainTabs.addTab("Core Competencies", coreTab);    
 
-    UserTabbedPane.addTab("User", upbTabs);
-    UserTabbedPane.addTab("Core Competencies", coreTab);
-    
-    //add textfield and button
-    
-
-    this.add(UserTabbedPane, BorderLayout.CENTER);
+    this.add(mainTabs, BorderLayout.CENTER);
     this.revalidate();
     this.repaint();
 }
     
     
-    public void createEditPanel(){
-        // delete all tabs
-        if (nameEdit != null) {
-            this.remove(nameEdit);
-        }
-        //create UserSectionRow with RowPanels   
-        nameEdit = new UserSectionRow("title");
-        this.add(nameEdit,BorderLayout.CENTER);
-        this.revalidate();
-    }
+//    public void createEditPanel(){
+//        // delete all tabs
+//        if (nameEdit != null) {
+//            this.remove(nameEdit);
+//        }
+//        //create UserSectionPanel with RowPanels   
+//        nameEdit = new UserSectionPanel("title");
+//        this.add(nameEdit,BorderLayout.CENTER);
+//        this.revalidate();
+//    }
 }

@@ -63,53 +63,12 @@ public class CVData {
         this.loadDataFromCSVFile("data/cv_repo_2.csv");
     }
 
-    public void deleteUserById(String field, String value) {
-    switch (field.toLowerCase()) {
-        case "name":
-            for (int i = 0; i < userNames.size(); i++) {
-                if (userNames.get(i).equals(value)) {
-                    userNames.remove(i);
-                    userTitles.remove(i);
-                    userEmails.remove(i);
-                    System.out.println("Deleted user by name: " + value);
-                    break;
-                }
-            }
-            break;
-        case "title":
-            for (int i = 0; i < userTitles.size(); i++) {
-                if (userTitles.get(i).equals(value)) {
-                    userNames.remove(i);
-                    userTitles.remove(i);
-                    userEmails.remove(i);
-                    System.out.println("Deleted user by title: " + value);
-                    break;
-                }
-            }
-            break;
-        case "email":
-            for (int i = 0; i < userEmails.size(); i++) {
-                if (userEmails.get(i).equals(value)) {
-                    userNames.remove(i);
-                    userTitles.remove(i);
-                    userEmails.remove(i);
-                    System.out.println("Deleted user by email: " + value);
-                    break;
-                }
-            }
-            break;
-        default:
-            System.out.println("Invalid field: " + field);
-            break;
-    }
-}
-
     
-    public void updateUser() {
+    public void updateUserBy() {
        
     }
     
-     public void deleteUser() {
+     public void deleteUserBy() {
        
     }
     
@@ -126,21 +85,18 @@ public class CVData {
                                 //Format 1: User,Name,Scheherazade Taylor,SJ Taylor,Shaz Taylor
                                 for (int i=2; i<values.length; i++) {
                                     userNames.add(values[i]);
-                                    System.out.println(values[i]);
                                 }
                                 break;
                             case "title":
                                 //Format 2: User,Title,Ms.,Miss
                                 for (int i=2; i<values.length; i++) {
                                     userTitles.add(values[i]);
-                                    System.out.println(values[i]);
                                 }
                                 break;
                             case "email":
                                 //Format 3: User,Email,strongshaz@bob.com,gmail_account@gmail.com,k1234567@kingston.ac.uk
                                 for (int i=2; i<values.length; i++) {
                                     userEmails.add(values[i]);
-                                    System.out.println(values[i]);
                                 }
                                 break;
                         }
@@ -150,14 +106,12 @@ public class CVData {
                                 for (int i=2; i<values.length; i++) {
                                     String skills = values[i].replace("////", ",");
                                     coreSkills.add(skills);
-                                    System.out.println(skills);
                                 }
                                 break;
                             case "profile statement":
                                 for (int i=2; i<values.length; i++) {
                                     String statement = values[i].replace("////", ",");
                                     profileStatements.add(statement);
-                                    System.out.println(statement);
                                 }
                         }
                 }
