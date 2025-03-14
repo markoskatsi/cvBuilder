@@ -21,6 +21,22 @@ public class CVData {
     private ArrayList<String> userNames = new ArrayList<>();
     private ArrayList<String> userTitles = new ArrayList<>();
     private ArrayList<String> userEmails = new ArrayList<>();
+
+    public ArrayList<String> getCoreSkills() {
+        return coreSkills;
+    }
+
+    public void setCoreSkills(ArrayList<String> coreSkills) {
+        this.coreSkills = coreSkills;
+    }
+
+    public ArrayList<String> getProfileStatements() {
+        return profileStatements;
+    }
+
+    public void setProfileStatements(ArrayList<String> profileStatements) {
+        this.profileStatements = profileStatements;
+    }
     private ArrayList<String> coreSkills = new ArrayList<>();
     private ArrayList<String> profileStatements = new ArrayList<>();
 
@@ -106,12 +122,14 @@ public class CVData {
                                 for (int i=2; i<values.length; i++) {
                                     String skills = values[i].replace("////", ",");
                                     coreSkills.add(skills);
+                                    System.out.println(skills);
                                 }
                                 break;
                             case "profile statement":
                                 for (int i=2; i<values.length; i++) {
                                     String statement = values[i].replace("////", ",");
                                     profileStatements.add(statement);
+                                    System.out.println(statement);
                                 }
                         }
                 }

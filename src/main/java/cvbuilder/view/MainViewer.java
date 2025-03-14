@@ -18,7 +18,7 @@ public class MainViewer extends JFrame{
     
     private UserSectionPanel nameEdit;
     UserSectionTabs upbTabs;
-    private JPanel coreTab;
+    CoreSectionTabs coreTabs;
     
     public UserSectionTabs getUpbTabs() {
         return upbTabs;
@@ -48,23 +48,27 @@ public class MainViewer extends JFrame{
         this.setJMenuBar(mb.getMb());
         
         // Add the panels for each profile on cv_repo_2.csv
-        this.createTabbedPane();
+        this.createTabbedPanes();
         this.setVisible(true);
     }
     
-    public void createTabbedPane() {
+    public void createTabbedPanes() {
     // Check if the main tab pane exists and remove it if it does
     if (upbTabs != null) {
         this.remove(upbTabs);
     }
     
+    if (coreTabs != null) {
+        this.remove(coreTabs);
+    }
+    
     //tabbed panes
     upbTabs = new UserSectionTabs();
-    coreTab = new JPanel();
+    coreTabs = new CoreSectionTabs();
 
     JTabbedPane mainTabs = new JTabbedPane();
     mainTabs.addTab("User", upbTabs);
-    mainTabs.addTab("Core Competencies", coreTab);    
+    mainTabs.addTab("Core Competencies", coreTabs);    
 
     this.add(mainTabs, BorderLayout.CENTER);
     this.revalidate();

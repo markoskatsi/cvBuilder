@@ -93,7 +93,7 @@ public class MenuBar extends JMenuBar implements ActionListener{
                 if(returnVal==JFileChooser.APPROVE_OPTION) {
                     file = chooser.getSelectedFile();
                     //CVData.getInstance().readCSV("userprofile.csv");
-                    MainViewer.getInstance().createTabbedPane();
+                    MainViewer.getInstance().createTabbedPanes();
                 }
                 break;
             case "Quit":
