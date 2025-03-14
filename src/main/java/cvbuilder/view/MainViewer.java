@@ -40,7 +40,7 @@ public class MainViewer extends JFrame{
         //creating window
         this.setLayout(new BorderLayout());
         this.setTitle("CV Builder");
-        this.setSize(450, 250);
+        this.setSize(550, 350);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
         // add menu bar

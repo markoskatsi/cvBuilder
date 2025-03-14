@@ -25,8 +25,8 @@ public class CoreSectionTabs extends JTabbedPane {
     public CoreSectionTabs() {
         CoreSectionPanel skillPanel = new CoreSectionPanel("Skills");
         CoreSectionPanel statementPanel = new CoreSectionPanel("Profile Statement");
-        this.eps.add(skillPanel);
         this.eps.add(statementPanel);
+        this.eps.add(skillPanel);
         for (CoreSectionPanel ep : this.eps) {
             this.add(ep);
         }
