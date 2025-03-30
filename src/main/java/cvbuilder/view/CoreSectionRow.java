@@ -60,6 +60,7 @@ public class CoreSectionRow extends JPanel{
     private JButton deleteButton;
     private CVData model;    
     CoreSectionControls controller;
+    private JTextArea textArea;
     
     public CoreSectionRow(String name, String value) {
         this.setName(name);
@@ -77,7 +78,7 @@ public class CoreSectionRow extends JPanel{
         this.setLayout(new FlowLayout());
 
         if (name.equalsIgnoreCase("profile statement")) {
-            JTextArea textArea = new JTextArea(value);
+            textArea = new JTextArea(value);
             textArea.setLineWrap(true);
             textArea.setWrapStyleWord(true);
             textArea.setEditable(false);
@@ -97,6 +98,10 @@ public class CoreSectionRow extends JPanel{
             this.add(editButton);
             this.add(deleteButton);
         }
+    }
+    
+    public JTextArea getTextArea() {
+        return textArea;
     }
 
     public void setActionListener() {

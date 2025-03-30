@@ -4,9 +4,7 @@
  */
 package cvbuilder.controller;
 
-import cvbuilder.view.AddUser;
 import cvbuilder.view.UserSectionPanel;
-import cvbuilder.view.UserSectionRow;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
