@@ -14,7 +14,7 @@ import java.awt.event.ActionListener;
  *
  * @author marko
  */
-public class AddUserControls implements ActionListener{
+public class UserAddControls implements ActionListener{
 
     UserSectionPanel view;
 

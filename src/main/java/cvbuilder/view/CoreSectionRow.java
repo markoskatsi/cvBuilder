@@ -6,12 +6,14 @@ package cvbuilder.view;
 
 import cvbuilder.controller.CoreSectionControls;
 import cvbuilder.model.CVData;
+import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
-import javax.swing.JTextField;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
 
 /**
  *
@@ -56,32 +58,46 @@ public class CoreSectionRow extends JPanel{
     private JRadioButton jrb;
     private JButton editButton;
     private JButton deleteButton;
-    private CVData model;
-    
+    private CVData model;    
     CoreSectionControls controller;
     
-    public CoreSectionRow(String name, String value){
+    public CoreSectionRow(String name, String value) {
         this.setName(name);
-        
-        controller = new CoreSectionControls(this);
-        
-        jrb = new JRadioButton(value);
+        CoreSectionControls controller = new CoreSectionControls(this);
+
         editButton = new JButton("Edit");
         deleteButton = new JButton("Delete");
-        
-        jrb.addActionListener(controller);
-        jrb.setActionCommand("Radio");
-        
+
         editButton.setActionCommand("edit");
-        
-        deleteButton.addActionListener(controller);
+        editButton.addActionListener(controller);
+
         deleteButton.setActionCommand("delete");
-        
+        deleteButton.addActionListener(controller);
+
         this.setLayout(new FlowLayout());
-        this.add(jrb);
-        this.add(editButton);
-        this.add(deleteButton);
+
+        if (name.equalsIgnoreCase("profile statement")) {
+            JTextArea textArea = new JTextArea(value);
+            textArea.setLineWrap(true);
+            textArea.setWrapStyleWord(true);
+            textArea.setEditable(false);
+
+            JScrollPane scrollPane = new JScrollPane(textArea);
+            scrollPane.setPreferredSize(new Dimension(350, 70)); 
+            
+            this.add(scrollPane);
+            this.add(editButton);
+            this.add(deleteButton);
+        } else {
+            jrb = new JRadioButton(value);
+            this.add(jrb);
+            this.add(editButton);
+            this.add(deleteButton);
+        }
     }
+
+
+
     
     
 

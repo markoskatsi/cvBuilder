@@ -4,7 +4,7 @@
  */
 package cvbuilder.view;
 
-import cvbuilder.controller.AddUserControls;
+import cvbuilder.controller.UserAddControls;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -42,7 +42,7 @@ public class AddUser extends JPanel{
         tf = new JTextField(15);
         jb = new JButton("Add");
         
-        AddUserControls controller = new AddUserControls();
+        UserAddControls controller = new UserAddControls();
         
         jb.setActionCommand("add");
         jb.addActionListener(controller);
