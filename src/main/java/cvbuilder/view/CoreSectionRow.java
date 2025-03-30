@@ -84,8 +84,10 @@ public class CoreSectionRow extends JPanel{
 
             JScrollPane scrollPane = new JScrollPane(textArea);
             scrollPane.setPreferredSize(new Dimension(350, 70)); 
-            
-            this.add(scrollPane);
+
+            jrb = new JRadioButton();
+            this.add(jrb);
+            this.add(scrollPane); 
             this.add(editButton);
             this.add(deleteButton);
         } else {
@@ -95,25 +97,6 @@ public class CoreSectionRow extends JPanel{
             this.add(deleteButton);
         }
     }
-
-
-
-    
-    
-
-//    @Override
-//    public final void update() {
-//        this.removeAll();
-//        
-//        bg = new ButtonGroup();
-//        
-//        for (String d : data) {
-//            var er = new UserRow(d);
-//            bg.add(er.getErb());
-//            this.add(er);
-//        }
-//        this.repaint();
-//    }
 
     public void setActionListener() {
         editButton.addActionListener(controller);

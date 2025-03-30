@@ -8,8 +8,6 @@ import cvbuilder.model.CVData;
 import cvbuilder.view.CoreSectionPanel;
 import cvbuilder.view.CoreSectionRow;
 import cvbuilder.view.MainViewer;
-import cvbuilder.view.UserSectionPanel;
-import cvbuilder.view.UserSectionRow;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
