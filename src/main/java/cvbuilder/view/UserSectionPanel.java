@@ -4,10 +4,10 @@
  */
 package cvbuilder.view;
 
+import cvbuilder.controller.UserAddControls;
 import cvbuilder.model.CVData;
 import java.awt.GridLayout;
 import java.util.ArrayList;
-import javax.swing.ButtonGroup;
 import javax.swing.JPanel;
 import javax.swing.border.TitledBorder;
 
@@ -16,12 +16,11 @@ import javax.swing.border.TitledBorder;
  * @author marko
  */
 public class UserSectionPanel extends JPanel {
-    
+
     private ArrayList<String> data;
-    ButtonGroup bg = new ButtonGroup();
-    ArrayList<UserSectionRow> userPanels = new ArrayList();
+    private ArrayList<UserSectionRow> userPanels = new ArrayList<>();
     
-     public ArrayList<String> getData() {
+    public ArrayList<String> getData() {
         return data;
     }
 
@@ -32,64 +31,41 @@ public class UserSectionPanel extends JPanel {
     public ArrayList<UserSectionRow> getUserPanels() {
         return userPanels;
     }
-    
-    public UserSectionPanel(String name)
-    {
+
+    public UserSectionPanel(String name) {
         this.setName(name);
         this.setBorder(new TitledBorder(name));
-        this.setLayout(new GridLayout(0,1));
-        
-//        for (CVData u : CVData.getInstance().getUserNames())
-//        {
-//
-//            UserSectionRow rowPanel = new UserSectionRow(u, this.getName());
-//            rowPanels.add(rowPanel);
-//            rowPanel.setActionListener();
-//            bg.add(rowPanel.getJrb());
-//            this.add(rowPanel);
-//        }
-        
+        this.setLayout(new GridLayout(0, 1)); 
+
         switch (name.toLowerCase()) {
-            case "title": 
+            case "title":
                 this.setData(CVData.getInstance().getUserTitles());
-                for (String title : CVData.getInstance().getUserTitles()) {
-                    UserSectionRow userPanel = new UserSectionRow(name, title);
-                    userPanels.add(userPanel);
-                    userPanel.setActionListener();
-                    this.add(userPanel);
-                }
-                this.add(new AddUser());
                 break;
             case "name":
                 this.setData(CVData.getInstance().getUserNames());
-                for (String n : CVData.getInstance().getUserNames()) {
-                    UserSectionRow userPanel = new UserSectionRow(name, n);
-                    userPanels.add(userPanel);
-                    userPanel.setActionListener();
-                    this.add(userPanel);
-                }
-                this.add(new AddUser());
                 break;
-            case "email":  
+            case "email":
                 this.setData(CVData.getInstance().getUserEmails());
-                for (String email : CVData.getInstance().getUserEmails()) {
-                    UserSectionRow userPanel = new UserSectionRow(name, email);
-                    userPanels.add(userPanel);
-                    userPanel.setActionListener();
-                    this.add(userPanel);
-                }
-                this.add(new AddUser());
                 break;
         }
+
+        for (String item : data) {
+            UserSectionRow userPanel = new UserSectionRow(name, item);
+            userPanels.add(userPanel);
+            this.add(userPanel); 
+        }
+        this.add(new UserAddControls(this));
+    }
+
+    public void addRow(UserSectionRow row) {
+        this.removeAll();
+        userPanels.add(row);
+        for (UserSectionRow panel : userPanels) {
+            this.add(panel);
+        }
+        this.add(new UserAddControls(this));
         
+        this.repaint();
     }
+}
 
-    public ArrayList<UserSectionRow> getRowPanels() {
-        return userPanels;
-    }
-
-    public void setRowPanels(ArrayList<UserSectionRow> rowPanels) {
-        this.userPanels = rowPanels;
-    }
-    
-} 

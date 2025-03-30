@@ -58,6 +58,7 @@ public class UserSectionControls implements ActionListener{
                 break;
             case "delete":
                 data.remove(oldText);
+                sectionPanel.getUserPanels().remove(view);
                 sectionPanel.remove(view);
                 sectionPanel.revalidate();
                 sectionPanel.repaint();

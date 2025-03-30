@@ -75,6 +75,7 @@ public class UserSectionRow extends JPanel{
         jrb.addActionListener(controller);
         jrb.setActionCommand("Radio");
         
+        editButton.addActionListener(controller);
         editButton.setActionCommand("edit");
         
         deleteButton.addActionListener(controller);
@@ -86,22 +87,6 @@ public class UserSectionRow extends JPanel{
         this.add(deleteButton);
     }
     
-    
-
-//    @Override
-//    public final void update() {
-//        this.removeAll();
-//        
-//        bg = new ButtonGroup();
-//        
-//        for (String d : data) {
-//            var er = new UserRow(d);
-//            bg.add(er.getErb());
-//            this.add(er);
-//        }
-//        this.repaint();
-//    }
-
     public void setActionListener() {
         editButton.addActionListener(controller);
     }

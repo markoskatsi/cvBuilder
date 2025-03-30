@@ -40,30 +40,19 @@ public class CoreSectionPanel extends JPanel {
         this.setLayout(new GridLayout(0,1));
         
         switch (name.toLowerCase()) {
-            case "skills": 
+            case "skills":
                 this.setData(CVData.getInstance().getCoreSkills());
-                
-                for (String skills : CVData.getInstance().getCoreSkills()) {
-                    CoreSectionRow corePanel = new CoreSectionRow(name, skills);
-                    corePanels.add(corePanel);
-                    corePanel.setActionListener();
-                    this.add(corePanel);
-                }
-                this.add(new AddUser());
                 break;
             case "profile statement":
                 this.setData(CVData.getInstance().getProfileStatements());
-                
-                for (String stmt : CVData.getInstance().getProfileStatements()) {
-                    CoreSectionRow corePanel = new CoreSectionRow(name, stmt);
-                    corePanels.add(corePanel);
-                    corePanel.setActionListener();
-                    this.add(corePanel);
-                }
-                this.add(new AddUser());
                 break;
         }
         
+        for (String item : data) {
+            CoreSectionRow corePanel = new CoreSectionRow(name, item);
+            corePanels.add(corePanel);
+            this.add(corePanel); 
+        }
     }
 
     public ArrayList<CoreSectionRow> getRowPanels() {
