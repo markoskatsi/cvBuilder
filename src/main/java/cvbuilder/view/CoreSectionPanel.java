@@ -4,6 +4,7 @@
  */
 package cvbuilder.view;
 
+import cvbuilder.controller.CoreAddControls;
 import cvbuilder.model.CVData;
 import java.awt.GridLayout;
 import java.util.ArrayList;
@@ -48,11 +49,23 @@ public class CoreSectionPanel extends JPanel {
                 break;
         }
         
-        for (String item : data) {
-            CoreSectionRow corePanel = new CoreSectionRow(name, item);
+        for (String value : data) {
+            CoreSectionRow corePanel = new CoreSectionRow(name, value);
             corePanels.add(corePanel);
             this.add(corePanel); 
         }
+        this.add(new CoreAddControls(this));
+    }
+    
+    public void addCoreRow(CoreSectionRow row) {
+        this.removeAll();
+        corePanels.add(row);
+        for (CoreSectionRow panel : corePanels) {
+            this.add(panel);
+        }
+        this.add(new CoreAddControls(this));
+        this.revalidate();
+        this.repaint();
     }
 
     public ArrayList<CoreSectionRow> getRowPanels() {

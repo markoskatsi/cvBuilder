@@ -4,7 +4,10 @@
  */
 package cvbuilder.model;
 
+import cvbuilder.controller.UserAddControls;
 import cvbuilder.view.Observer;
+import cvbuilder.view.UserSectionPanel;
+import cvbuilder.view.UserSectionRow;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -79,14 +82,6 @@ public class CVData {
         this.loadDataFromCSVFile("data/cv_repo_2.csv");
     }
 
-    
-    public void updateUserBy() {
-       
-    }
-    
-     public void deleteUserBy() {
-       
-    }
     
     public void loadDataFromCSVFile(String filename) {
         try(BufferedReader in = new BufferedReader(new FileReader(filename));) {

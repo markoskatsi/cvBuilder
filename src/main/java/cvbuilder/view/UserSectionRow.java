@@ -85,7 +85,7 @@ public class UserSectionRow extends JPanel{
         this.add(jrb);
         this.add(editButton);
         this.add(deleteButton);
-    }
+    }  
     
     public void setActionListener() {
         editButton.addActionListener(controller);

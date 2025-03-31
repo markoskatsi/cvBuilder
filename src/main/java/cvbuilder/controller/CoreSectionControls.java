@@ -100,6 +100,7 @@ public class CoreSectionControls implements ActionListener {
                 } else {
                     data.remove(oldSkillsText);
                 }
+                sectionPanel.getCorePanels().remove(view);
                 sectionPanel.remove(view);
                 sectionPanel.revalidate();
                 sectionPanel.repaint();

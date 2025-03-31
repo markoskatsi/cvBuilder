@@ -49,22 +49,22 @@ public class UserSectionPanel extends JPanel {
                 break;
         }
 
-        for (String item : data) {
-            UserSectionRow userPanel = new UserSectionRow(name, item);
+        for (String value : data) {
+            UserSectionRow userPanel = new UserSectionRow(name, value);
             userPanels.add(userPanel);
             this.add(userPanel); 
         }
         this.add(new UserAddControls(this));
     }
 
-    public void addRow(UserSectionRow row) {
+    public void addUserRow(UserSectionRow row) {
         this.removeAll();
         userPanels.add(row);
         for (UserSectionRow panel : userPanels) {
             this.add(panel);
         }
         this.add(new UserAddControls(this));
-        
+        this.revalidate();
         this.repaint();
     }
 }

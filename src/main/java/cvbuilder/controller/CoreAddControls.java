@@ -5,6 +5,8 @@
 package cvbuilder.controller;
 
 import cvbuilder.model.CVData;
+import cvbuilder.view.CoreSectionPanel;
+import cvbuilder.view.CoreSectionRow;
 import cvbuilder.view.UserSectionPanel;
 import cvbuilder.view.UserSectionRow;
 import java.awt.event.ActionEvent;
@@ -17,14 +19,14 @@ import javax.swing.JTextField;
  *
  * @author marko
  */
-public class UserAddControls extends JPanel implements ActionListener {
-    private UserSectionPanel view;
+public class CoreAddControls extends JPanel implements ActionListener {
+    private CoreSectionPanel view;
     private JTextField tf;
     private JButton jb;
 
-    public UserAddControls(UserSectionPanel view) {
+    public CoreAddControls(CoreSectionPanel view) {
         this.view = view;
-        tf = new JTextField(15);
+        tf = new JTextField(40);
         jb = new JButton("Add");
      
         jb.setActionCommand("add");
@@ -40,19 +42,15 @@ public class UserAddControls extends JPanel implements ActionListener {
         
         if (!newData.isEmpty()) { 
             switch (view.getName().toLowerCase()) {
-                case "title":
-                    CVData.getInstance().getUserTitles().add(newData);
+                case "skills":
+                    CVData.getInstance().getCoreSkills().add(newData);
                     break;
-                case "name":
-                    CVData.getInstance().getUserNames().add(newData);
-                    break;
-                case "email":
-                    CVData.getInstance().getUserEmails().add(newData);
+                case "profile statement":
+                    CVData.getInstance().getProfileStatements().add(newData);
                     break;
             }
-            
-            UserSectionRow newRow = new UserSectionRow(view.getName(), newData);
-            view.addUserRow(newRow);
+            CoreSectionRow newRow = new CoreSectionRow(view.getName(), newData);
+            view.addCoreRow(newRow); 
             
             CVData.getInstance().modelChanged();
             tf.setText("");
