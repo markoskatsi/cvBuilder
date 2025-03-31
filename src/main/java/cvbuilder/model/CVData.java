@@ -4,14 +4,10 @@
  */
 package cvbuilder.model;
 
-import cvbuilder.controller.UserAddControls;
 import cvbuilder.view.Observer;
-import cvbuilder.view.UserSectionPanel;
-import cvbuilder.view.UserSectionRow;
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.PrintWriter;
 import java.util.ArrayList;
 
 /**
@@ -75,36 +71,41 @@ public class CVData {
         }
         return instance;
     }
-
     
+
     private CVData(){
     
-        this.loadDataFromCSVFile("data/cv_repo_2.csv");
+        //this.loadDataFromCSVFile("data/cv_repo_2.csv");
     }
+    
+    
 
     
-    public void loadDataFromCSVFile(String filename) {
+    public void loadDataFromCSVFile(File filename) {
         try(BufferedReader in = new BufferedReader(new FileReader(filename));) {
             while (in.ready()) {
                 String cSVline = in.readLine();
-                
                 String[] values = cSVline.split(",");
+                
                 switch (values[0].toLowerCase()) {
                     case "user":  
                         switch (values[1].toLowerCase()) {
                             case "name": 
+                                userNames.clear();
                                 //Format 1: User,Name,Scheherazade Taylor,SJ Taylor,Shaz Taylor
                                 for (int i=2; i<values.length; i++) {
                                     userNames.add(values[i]);
                                 }
                                 break;
                             case "title":
+                                userTitles.clear();
                                 //Format 2: User,Title,Ms.,Miss
                                 for (int i=2; i<values.length; i++) {
                                     userTitles.add(values[i]);
                                 }
                                 break;
                             case "email":
+                                userEmails.clear();
                                 //Format 3: User,Email,strongshaz@bob.com,gmail_account@gmail.com,k1234567@kingston.ac.uk
                                 for (int i=2; i<values.length; i++) {
                                     userEmails.add(values[i]);
@@ -114,6 +115,7 @@ public class CVData {
                     case "core competencies":
                         switch (values[1].toLowerCase()) {
                             case "skills": 
+                                coreSkills.clear();
                                 for (int i=2; i<values.length; i++) {
                                     String skills = values[i].replace("////", ",");
                                     coreSkills.add(skills);
@@ -121,6 +123,7 @@ public class CVData {
                                 }
                                 break;
                             case "profile statement":
+                                profileStatements.clear();
                                 for (int i=2; i<values.length; i++) {
                                     String statement = values[i].replace("////", ",");
                                     profileStatements.add(statement);

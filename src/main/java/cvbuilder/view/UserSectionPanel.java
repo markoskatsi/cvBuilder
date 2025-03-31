@@ -48,7 +48,7 @@ public class UserSectionPanel extends JPanel {
                 this.setData(CVData.getInstance().getUserEmails());
                 break;
         }
-
+        
         for (String value : data) {
             UserSectionRow userPanel = new UserSectionRow(name, value);
             userPanels.add(userPanel);

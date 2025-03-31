@@ -8,10 +8,12 @@ import cvbuilder.model.CVData;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.nio.file.Paths;
 import javax.swing.JFileChooser;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.SwingUtilities;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
@@ -85,14 +87,14 @@ public class MenuBar extends JMenuBar implements ActionListener{
     public void actionPerformed(ActionEvent e) {
         switch(e.getActionCommand()){
             case "OpenFile":
-                JFileChooser chooser = new JFileChooser();
+                JFileChooser chooser = new JFileChooser(Paths.get(System.getProperty("user.dir"), "data").toFile());
                 FileNameExtensionFilter filter = new FileNameExtensionFilter(
                 "CSV Files", "csv");
                 chooser.setFileFilter(filter);
                 int returnVal = chooser.showOpenDialog(null);
                 if(returnVal==JFileChooser.APPROVE_OPTION) {
                     file = chooser.getSelectedFile();
-                    //CVData.getInstance().readCSV("userprofile.csv");
+                    CVData.getInstance().loadDataFromCSVFile(file);
                     MainViewer.getInstance().createTabbedPanes();
                 }
                 break;

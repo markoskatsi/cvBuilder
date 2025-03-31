@@ -6,7 +6,6 @@ package cvbuilder.view;
 
 import java.awt.BorderLayout;
 import javax.swing.JFrame;
-import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 
 /**
@@ -53,37 +52,28 @@ public class MainViewer extends JFrame{
     }
     
     public void createTabbedPanes() {
-    // Check if the main tab pane exists and remove it if it does
-    if (upbTabs != null) {
-        this.remove(upbTabs);
-    }
-    
-    if (coreTabs != null) {
-        this.remove(coreTabs);
-    }
-    
-    //tabbed panes
-    upbTabs = new UserSectionTabs();
-    coreTabs = new CoreSectionTabs();
+        // clearing everything within the jframe
+        this.getContentPane().removeAll();
+        
+        // Check if the main tab pane exists and remove it if it does
+        if (upbTabs != null) {
+            this.remove(upbTabs);
+        }
 
-    JTabbedPane mainTabs = new JTabbedPane();
-    mainTabs.addTab("User", upbTabs);
-    mainTabs.addTab("Core Competencies", coreTabs);    
+        if (coreTabs != null) {
+            this.remove(coreTabs);
+        }
 
-    this.add(mainTabs, BorderLayout.CENTER);
-    this.revalidate();
-    this.repaint();
-}
-    
-    
-//    public void createEditPanel(){
-//        // delete all tabs
-//        if (nameEdit != null) {
-//            this.remove(nameEdit);
-//        }
-//        //create UserSectionPanel with RowPanels   
-//        nameEdit = new UserSectionPanel("title");
-//        this.add(nameEdit,BorderLayout.CENTER);
-//        this.revalidate();
-//    }
+        //tabbed panes
+        upbTabs = new UserSectionTabs();
+        coreTabs = new CoreSectionTabs();
+
+        JTabbedPane mainTabs = new JTabbedPane();
+        mainTabs.addTab("User", upbTabs);
+        mainTabs.addTab("Core Competencies", coreTabs);    
+
+        this.add(mainTabs, BorderLayout.CENTER);
+        this.revalidate();
+        this.repaint();
+    }
 }
