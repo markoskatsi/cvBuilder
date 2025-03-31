@@ -64,7 +64,7 @@ public class MenuBar extends JMenuBar implements ActionListener{
     fileMenu = new JMenu("File");
     
     openFile = new JMenuItem("Open file...");
-    saveFile = new JMenuItem("Save File...");
+    saveFile = new JMenuItem("Save New File As...");
     quit = new JMenuItem("Quit");
     
     //register listeners with menu items
@@ -73,7 +73,7 @@ public class MenuBar extends JMenuBar implements ActionListener{
     quit.addActionListener(this);
     
     openFile.setActionCommand("OpenFile");
-    saveFile.setActionCommand("SaveFile");
+    saveFile.setActionCommand("SaveAs");
     quit.setActionCommand("Quit");
     
     fileMenu.add(openFile);
@@ -101,8 +101,16 @@ public class MenuBar extends JMenuBar implements ActionListener{
             case "Quit":
                 System.exit(0);
                 break;
-            case "SaveFile":
-                //CVData.getInstance().writeCSV(file.getAbsolutePath());
+            case "SaveAs":
+                JFileChooser saveChooser = new JFileChooser(Paths.get(System.getProperty("user.dir"), "data").toFile());
+                FileNameExtensionFilter saveFilter = new FileNameExtensionFilter(
+                "CSV Files", "csv");
+                saveChooser.setFileFilter(saveFilter);    
+                int returnSaveVal = saveChooser.showSaveDialog(null);
+                if (returnSaveVal == JFileChooser.APPROVE_OPTION) {
+                    File fileToSave = saveChooser.getSelectedFile();
+                    CVData.getInstance().writeNewCSVFile(fileToSave);
+                }
                 break;
                 
         }
