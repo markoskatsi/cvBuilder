@@ -1,4 +1,4 @@
-/*
+  /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
@@ -42,7 +42,7 @@ public class CoreSectionControls implements ActionListener {
         CoreSectionPanel sectionPanel = (CoreSectionPanel) view.getParent();
 
         String oldSkillsText = view.getJrb().getText();
-        String oldTextAreaText = null;
+        String oldTextAreaText = view.getTextArea().getText();
         String newText = null;
 
         ArrayList<String> data = sectionPanel.getData();
@@ -97,6 +97,7 @@ public class CoreSectionControls implements ActionListener {
             case "delete":
                 if (oldTextAreaText != null) {
                     data.remove(oldTextAreaText);
+                    System.out.println(oldTextAreaText);
                 } else {
                     data.remove(oldSkillsText);
                 }
