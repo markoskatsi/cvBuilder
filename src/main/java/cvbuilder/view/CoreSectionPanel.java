@@ -22,7 +22,7 @@ public class CoreSectionPanel extends JPanel {
     ButtonGroup bg = new ButtonGroup();
     ArrayList<CoreSectionRow> corePanels = new ArrayList();
     
-     public ArrayList<String> getData() {
+    public ArrayList<String> getData() {
         return data;
     }
 

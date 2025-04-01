@@ -98,6 +98,19 @@ public class CoreSectionRow extends JPanel{
             this.add(editButton);
             this.add(deleteButton);
         }
+        
+        jrb.addActionListener(e -> {
+            if (jrb.isSelected()) {
+                switch (this.getName().toLowerCase()) {
+                    case "skills":
+                        CVData.getInstance().setSelectedSkill(jrb.getText());
+                        break;
+                    case "profile statement":
+                        CVData.getInstance().setSelectedProfileStatement(this.getTextArea().getText());
+                        break;
+                }
+            }
+        });
     }
     
     public JTextArea getTextArea() {

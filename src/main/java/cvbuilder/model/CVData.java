@@ -26,6 +26,52 @@ public class CVData {
     private ArrayList<String> coreSkills = new ArrayList<>();
     private ArrayList<String> profileStatements = new ArrayList<>();
     private ArrayList<Observer> observers = new ArrayList<>();
+    
+    private String selectedName;
+    private String selectedTitle;
+    private String selectedEmail;
+    private String selectedSkill;
+    private String selectedProfileStatement;
+
+    public String getSelectedName() {
+        return selectedName;
+    }
+
+    public void setSelectedName(String selectedName) {
+        this.selectedName = selectedName;
+    }
+
+    public String getSelectedTitle() {
+        return selectedTitle;
+    }
+
+    public void setSelectedTitle(String selectedTitle) {
+        this.selectedTitle = selectedTitle;
+    }
+
+    public String getSelectedEmail() {
+        return selectedEmail;
+    }
+
+    public void setSelectedEmail(String selectedEmail) {
+        this.selectedEmail = selectedEmail;
+    }
+
+    public String getSelectedSkill() {
+        return selectedSkill;
+    }
+
+    public void setSelectedSkill(String selectedSkill) {
+        this.selectedSkill = selectedSkill;
+    }
+
+    public String getSelectedProfileStatement() {
+        return selectedProfileStatement;
+    }
+
+    public void setSelectedProfileStatement(String selectedProfileStatement) {
+        this.selectedProfileStatement = selectedProfileStatement;
+    }
 
     private static CVData instance;
 

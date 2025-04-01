@@ -34,7 +34,6 @@ public class MainViewer extends JFrame{
       return instance;
     }
     
-        
     private MainViewer() {
         //creating window
         this.setLayout(new BorderLayout());
@@ -46,7 +45,7 @@ public class MainViewer extends JFrame{
         MenuBar mb = new MenuBar();
         this.setJMenuBar(mb.getMb());
         
-        // Add the panels for each profile on cv_repo_2.csv
+        // Add the panels for each profile on cv_repo_2.csv or other 
         this.createTabbedPanes();
         this.setVisible(true);
     }

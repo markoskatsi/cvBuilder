@@ -77,10 +77,28 @@ public class UserSectionRow extends JPanel{
         deleteButton.addActionListener(controller);
         deleteButton.setActionCommand("delete");
         
+        jrb.addActionListener(e -> {
+            if (jrb.isSelected()) {
+                switch (this.getName().toLowerCase()) {
+                    case "name":
+                        CVData.getInstance().setSelectedName(jrb.getText());
+                        break;
+                    case "title":
+                        CVData.getInstance().setSelectedTitle(jrb.getText());
+                        break;
+                    case "email":
+                        CVData.getInstance().setSelectedEmail(jrb.getText());
+                        break;
+                }
+            }
+        });
+        
         this.setLayout(new FlowLayout());
         this.add(jrb);
         this.add(editButton);
         this.add(deleteButton);
+        
+        
     }  
     
     public void setActionListener() {

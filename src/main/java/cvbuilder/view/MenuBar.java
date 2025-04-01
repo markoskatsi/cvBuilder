@@ -5,6 +5,7 @@
 package cvbuilder.view;
 
 import cvbuilder.model.CVData;
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
@@ -13,7 +14,9 @@ import javax.swing.JFileChooser;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
-import javax.swing.SwingUtilities;
+import javax.swing.JOptionPane;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
@@ -21,6 +24,8 @@ import javax.swing.filechooser.FileNameExtensionFilter;
  * @author marko
  */
 public class MenuBar extends JMenuBar implements ActionListener{
+    
+    private CoreSectionPanel view;
 
     public JMenuBar getMb() {
         return mb;
@@ -55,31 +60,40 @@ public class MenuBar extends JMenuBar implements ActionListener{
     }
     private JMenuBar mb;
     private JMenu fileMenu;
+    private JMenu cvMenu;
     JMenuItem openFile;
     JMenuItem saveFile;
+    JMenuItem createCV;
     JMenuItem quit;
     
     public MenuBar(){
     mb = new JMenuBar();
     fileMenu = new JMenu("File");
+    cvMenu = new JMenu("CV options");
     
-    openFile = new JMenuItem("Open file...");
-    saveFile = new JMenuItem("Save New File As...");
+    openFile = new JMenuItem("Open CSV file...");
+    saveFile = new JMenuItem("Save As CSV File As...");
+    createCV = new JMenuItem("Create Custom CV...");
     quit = new JMenuItem("Quit");
     
     //register listeners with menu items
     openFile.addActionListener(this);
     saveFile.addActionListener(this);
+    createCV.addActionListener(this);
     quit.addActionListener(this);
     
     openFile.setActionCommand("OpenFile");
     saveFile.setActionCommand("SaveAs");
+    createCV.setActionCommand("CreateCV");
     quit.setActionCommand("Quit");
     
     fileMenu.add(openFile);
     fileMenu.add(saveFile);
+    fileMenu.add(createCV);
     fileMenu.add(quit);
+    cvMenu.add(createCV);
     mb.add(fileMenu);
+    mb.add(cvMenu);
     }
     private File file;
     
@@ -98,9 +112,6 @@ public class MenuBar extends JMenuBar implements ActionListener{
                     MainViewer.getInstance().createTabbedPanes();
                 }
                 break;
-            case "Quit":
-                System.exit(0);
-                break;
             case "SaveAs":
                 JFileChooser saveChooser = new JFileChooser(Paths.get(System.getProperty("user.dir"), "data").toFile());
                 FileNameExtensionFilter saveFilter = new FileNameExtensionFilter(
@@ -112,7 +123,37 @@ public class MenuBar extends JMenuBar implements ActionListener{
                     CVData.getInstance().writeNewCSVFile(fileToSave);
                 }
                 break;
+            case "CreateCV":
                 
+                //format of cv preview
+                String cvText = "Custom CV Preview\n\n";
+                
+                cvText += "Personal Information\n";
+                cvText += CVData.getInstance().getSelectedTitle()+" ";
+                cvText += CVData.getInstance().getSelectedName()+"\n";
+                cvText += CVData.getInstance().getSelectedEmail()+"\n\n";
+
+                cvText += "Core Competencies\n";
+                cvText += CVData.getInstance().getSelectedProfileStatement() + "\n";
+                cvText += "Skills: " + CVData.getInstance().getSelectedSkill();
+
+                // creating a text area
+                JTextArea textArea = new JTextArea(cvText.toString());
+                textArea.setEditable(false);
+                textArea.setLineWrap(true);
+                textArea.setWrapStyleWord(true);
+                textArea.setPreferredSize(new Dimension(500, 200));
+
+                JOptionPane.showMessageDialog(
+                    this, 
+                    textArea, 
+                    "Custom CV", 
+                    JOptionPane.PLAIN_MESSAGE
+                );
+                break;
+            case "Quit":
+                System.exit(0);
+                break;
         }
     }
 }

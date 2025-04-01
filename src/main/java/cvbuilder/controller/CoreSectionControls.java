@@ -32,8 +32,8 @@ public class CoreSectionControls implements ActionListener {
 
     CoreSectionRow view;
 
-    public CoreSectionControls(CoreSectionRow core) {
-        this.view = core;
+    public CoreSectionControls(CoreSectionRow usr) {
+        this.view = usr;
     }
 
     @Override
@@ -97,7 +97,6 @@ public class CoreSectionControls implements ActionListener {
             case "delete":
                 if (oldTextAreaText != null) {
                     data.remove(oldTextAreaText);
-                    System.out.println(oldTextAreaText);
                 } else {
                     data.remove(oldSkillsText);
                 }
@@ -107,7 +106,8 @@ public class CoreSectionControls implements ActionListener {
                 sectionPanel.repaint();
                 CVData.getInstance().modelChanged();
                 break;
-
+            case "radio":
+                System.out.println("Radio button selected: " + view.getJrb().getText());        
             default:
                 throw new UnsupportedOperationException("Unknown action command: " + s.getActionCommand());
         }
