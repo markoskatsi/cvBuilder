@@ -19,8 +19,12 @@ import javax.swing.border.TitledBorder;
 public class CoreSectionPanel extends JPanel {
     
     private ArrayList<String> data;
-    ButtonGroup bg = new ButtonGroup();
-    ArrayList<CoreSectionRow> corePanels = new ArrayList();
+    private ButtonGroup bg = new ButtonGroup();
+    private ArrayList<CoreSectionRow> corePanels = new ArrayList();
+    
+    public ButtonGroup getBg() {
+        return bg;
+    }
     
     public ArrayList<String> getData() {
         return data;
@@ -52,6 +56,7 @@ public class CoreSectionPanel extends JPanel {
         for (String value : data) {
             CoreSectionRow corePanel = new CoreSectionRow(name, value);
             corePanels.add(corePanel);
+            bg.add(corePanel.getJrb());
             this.add(corePanel); 
         }
         this.add(new CoreAddControls(this));

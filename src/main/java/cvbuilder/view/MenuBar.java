@@ -155,6 +155,8 @@ public class MenuBar extends JMenuBar implements ActionListener{
                 cvText += "Core Competencies\n";
                 cvText += CVData.getInstance().getSelectedProfileStatement() + "\n";
                 cvText += "Skills: " + CVData.getInstance().getSelectedSkill();
+                
+                System.out.println(cvText);
 
                 // creating a text area
                 JTextArea textArea = new JTextArea(cvText.toString());

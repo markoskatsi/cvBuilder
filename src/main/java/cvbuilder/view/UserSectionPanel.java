@@ -8,6 +8,7 @@ import cvbuilder.controller.UserAddControls;
 import cvbuilder.model.CVData;
 import java.awt.GridLayout;
 import java.util.ArrayList;
+import javax.swing.ButtonGroup;
 import javax.swing.JPanel;
 import javax.swing.border.TitledBorder;
 
@@ -18,7 +19,12 @@ import javax.swing.border.TitledBorder;
 public class UserSectionPanel extends JPanel {
 
     private ArrayList<String> data;
+    private ButtonGroup bg = new ButtonGroup();
     private ArrayList<UserSectionRow> userPanels = new ArrayList<>();
+    
+    public ButtonGroup getBg() {
+        return bg;
+    }
     
     public ArrayList<String> getData() {
         return data;
@@ -52,6 +58,7 @@ public class UserSectionPanel extends JPanel {
         for (String value : data) {
             UserSectionRow userPanel = new UserSectionRow(name, value);
             userPanels.add(userPanel);
+            bg.add(userPanel.getJrb());
             this.add(userPanel); 
         }
         this.add(new UserAddControls(this));

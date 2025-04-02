@@ -5,10 +5,12 @@
 package cvbuilder.controller;
 
 import cvbuilder.model.CVData;
+import cvbuilder.view.CoreSectionPanel;
 import cvbuilder.view.UserSectionPanel;
 import cvbuilder.view.UserSectionRow;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
@@ -39,6 +41,9 @@ public class UserAddControls extends JPanel implements ActionListener {
         String newData = tf.getText().trim();
         
         if (!newData.isEmpty()) { 
+            UserSectionPanel userPanel = view;
+            ButtonGroup bg = userPanel.getBg();
+            
             switch (view.getName().toLowerCase()) {
                 case "title":
                     CVData.getInstance().getUserTitles().add(newData);
@@ -53,6 +58,7 @@ public class UserAddControls extends JPanel implements ActionListener {
             
             UserSectionRow newRow = new UserSectionRow(view.getName(), newData);
             view.addUserRow(newRow);
+            bg.add(newRow.getJrb());
             
             CVData.getInstance().modelChanged();
             tf.setText("");

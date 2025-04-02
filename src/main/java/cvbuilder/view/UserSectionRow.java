@@ -68,8 +68,8 @@ public class UserSectionRow extends JPanel{
         editButton = new JButton("Edit");
         deleteButton = new JButton("Delete");
         
-        jrb.addActionListener(controller);
-        jrb.setActionCommand("Radio");
+        //jrb.addActionListener(controller);
+        //jrb.setActionCommand("Radio");
         
         editButton.addActionListener(controller);
         editButton.setActionCommand("edit");

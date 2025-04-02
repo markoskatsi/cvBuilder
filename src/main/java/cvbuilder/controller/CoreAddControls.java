@@ -7,8 +7,10 @@ package cvbuilder.controller;
 import cvbuilder.model.CVData;
 import cvbuilder.view.CoreSectionPanel;
 import cvbuilder.view.CoreSectionRow;
+import cvbuilder.view.UserSectionPanel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
@@ -39,6 +41,9 @@ public class CoreAddControls extends JPanel implements ActionListener {
         String newData = tf.getText().trim();
         
         if (!newData.isEmpty()) { 
+            CoreSectionPanel corePanel = view;
+            ButtonGroup bg = corePanel.getBg();
+            
             switch (view.getName().toLowerCase()) {
                 case "skills":
                     CVData.getInstance().getCoreSkills().add(newData);
@@ -49,6 +54,7 @@ public class CoreAddControls extends JPanel implements ActionListener {
             }
             CoreSectionRow newRow = new CoreSectionRow(view.getName(), newData);
             view.addCoreRow(newRow); 
+            bg.add(newRow.getJrb());
             
             CVData.getInstance().modelChanged();
             tf.setText("");
