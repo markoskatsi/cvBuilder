@@ -42,16 +42,17 @@ public class CoreSectionControls implements ActionListener {
         CoreSectionPanel sectionPanel = (CoreSectionPanel) view.getParent();
 
         String oldSkillsText = view.getJrb().getText();
-        String oldTextAreaText = view.getTextArea().getText();
-        String newText = null;
-
+        String oldTextAreaText = null;
+        
+        if (view.getTextArea() != null) {
+            oldTextAreaText = view.getTextArea().getText();
+        }
+        
         ArrayList<String> data = sectionPanel.getData();
-
+        
         switch (s.getActionCommand()) {
             case "edit":
                 if (view.getTextArea() != null) {
-                    oldTextAreaText = view.getTextArea().getText();
-
                     // Creating a JTextArea so the user can see all of the oldText
                     JTextArea textAreaForDialog = new JTextArea(oldTextAreaText);
                     textAreaForDialog.setLineWrap(true);
@@ -71,16 +72,16 @@ public class CoreSectionControls implements ActionListener {
                     );
 
                     if (option == JOptionPane.OK_OPTION) {
-                        newText = textAreaForDialog.getText();
+                        String newTextArea = textAreaForDialog.getText();
 
-                        if (newText != null && !newText.isBlank()) {
-                            data.set(data.indexOf(oldTextAreaText), newText);
-                            view.getTextArea().setText(newText);
+                        if (newTextArea != null && !newTextArea.isBlank()) {
+                            data.set(data.indexOf(oldTextAreaText), newTextArea);
+                            view.getTextArea().setText(newTextArea);
                             System.out.println(data);
                         }
                     }
                 } else {
-                    newText = JOptionPane.showInputDialog(
+                    String newText = JOptionPane.showInputDialog(
                         MainViewer.getInstance(),
                         "Enter the new value for: ", oldSkillsText
                     );
