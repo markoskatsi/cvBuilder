@@ -64,8 +64,8 @@ public class UserSectionControls implements ActionListener{
                 sectionPanel.repaint();
                 CVData.getInstance().modelChanged();
                 break;
-            case "radio":
-                System.out.println("Radio button selected: " + view.getJrb().getText());
+            //case "radio":
+                //System.out.println("Radio button selected: " + view.getJrb().getText());
             default:
                 throw new UnsupportedOperationException("Unknown action command: "+ s.getActionCommand());
         }

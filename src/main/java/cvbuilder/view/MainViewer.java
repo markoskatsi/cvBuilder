@@ -15,7 +15,6 @@ import javax.swing.JTabbedPane;
 public class MainViewer extends JFrame{
     private static MainViewer instance;
     
-    private UserSectionPanel nameEdit;
     UserSectionTabs upbTabs;
     CoreSectionTabs coreTabs;
     

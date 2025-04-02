@@ -12,6 +12,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -226,7 +227,8 @@ public class CVData {
                 writer.println();
             }
 
-            System.out.println("File saved successfully!");
+            JOptionPane.showMessageDialog(null, "CSV File has been saved! ", 
+                                "Saved Successfully", JOptionPane.INFORMATION_MESSAGE);
         } catch (IOException e) {
             e.printStackTrace();
         }
