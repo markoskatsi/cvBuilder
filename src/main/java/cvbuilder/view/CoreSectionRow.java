@@ -74,7 +74,7 @@ public class CoreSectionRow extends JPanel{
 
         deleteButton.setActionCommand("delete");
         deleteButton.addActionListener(controller);
-
+        
         this.setLayout(new FlowLayout());
 
         if (name.equalsIgnoreCase("profile statement")) {
@@ -87,7 +87,7 @@ public class CoreSectionRow extends JPanel{
             scrollPane.setPreferredSize(new Dimension(350, 70)); 
 
             jrb = new JRadioButton();
-
+            
             this.add(jrb);
             this.add(scrollPane); 
             this.add(editButton);

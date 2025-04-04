@@ -47,16 +47,16 @@ public class CoreAddControls extends JPanel implements ActionListener {
             switch (view.getName().toLowerCase()) {
                 case "skills":
                     CVData.getInstance().getCoreSkills().add(newData);
+                    System.out.println(CVData.getInstance().getCoreSkills());
                     break;
                 case "profile statement":
                     CVData.getInstance().getProfileStatements().add(newData);
+                    System.out.println(CVData.getInstance().getProfileStatements());
                     break;
             }
             CoreSectionRow newRow = new CoreSectionRow(view.getName(), newData);
             view.addCoreRow(newRow); 
             bg.add(newRow.getJrb());
-            
-            CVData.getInstance().modelChanged();
             tf.setText("");
         }
     }

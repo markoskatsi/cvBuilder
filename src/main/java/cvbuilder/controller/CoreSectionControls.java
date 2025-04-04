@@ -4,7 +4,6 @@
  */
 package cvbuilder.controller;
 
-import cvbuilder.model.CVData;
 import cvbuilder.view.CoreSectionPanel;
 import cvbuilder.view.CoreSectionRow;
 import cvbuilder.view.MainViewer;
@@ -35,7 +34,7 @@ public class CoreSectionControls implements ActionListener {
     public CoreSectionControls(CoreSectionRow usr) {
         this.view = usr;
     }
-
+    
     @Override
     public void actionPerformed(ActionEvent s) {
         // Getting the parent section panel of the coresectionrow clicked on
@@ -92,7 +91,6 @@ public class CoreSectionControls implements ActionListener {
                         System.out.println(data);
                     }
                 }
-                CVData.getInstance().modelChanged();
                 break;
 
             case "delete":
@@ -105,10 +103,7 @@ public class CoreSectionControls implements ActionListener {
                 sectionPanel.remove(view);
                 sectionPanel.revalidate();
                 sectionPanel.repaint();
-                CVData.getInstance().modelChanged();
-                break;
-            //case "radio":
-                //System.out.println("Radio button selected: " + view.getJrb().getText());        
+                break;       
             default:
                 throw new UnsupportedOperationException("Unknown action command: " + s.getActionCommand());
         }

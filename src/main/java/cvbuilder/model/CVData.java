@@ -4,7 +4,6 @@
  */
 package cvbuilder.model;
 
-import cvbuilder.view.Observer;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -26,14 +25,13 @@ public class CVData {
     private ArrayList<String> userEmails = new ArrayList<>();
     private ArrayList<String> coreSkills = new ArrayList<>();
     private ArrayList<String> profileStatements = new ArrayList<>();
-    private ArrayList<Observer> observers = new ArrayList<>();
     
     private String selectedName;
     private String selectedTitle;
     private String selectedEmail;
     private String selectedSkill;
     private String selectedProfileStatement;
-
+    
     public String getSelectedName() {
         return selectedName;
     }
@@ -115,16 +113,7 @@ public class CVData {
         this.profileStatements = profileStatements;
     }
 
-    public ArrayList<Observer> getObservers() {
-        return observers;
-    }
-
-    public void modelChanged() {
-        for (Observer o : observers) {
-            o.update();
-        }
-    }
-
+    
     public void loadDataFromCSVFile(File filename) {
         try (BufferedReader in = new BufferedReader(new FileReader(filename))) {
             while (in.ready()) {

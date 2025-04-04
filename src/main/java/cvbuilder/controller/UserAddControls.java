@@ -47,20 +47,21 @@ public class UserAddControls extends JPanel implements ActionListener {
             switch (view.getName().toLowerCase()) {
                 case "title":
                     CVData.getInstance().getUserTitles().add(newData);
+                    System.out.println(CVData.getInstance().getUserTitles());
                     break;
                 case "name":
                     CVData.getInstance().getUserNames().add(newData);
+                    System.out.println(CVData.getInstance().getUserNames());
                     break;
                 case "email":
                     CVData.getInstance().getUserEmails().add(newData);
+                    System.out.println(CVData.getInstance().getUserEmails());
                     break;
             }
             
             UserSectionRow newRow = new UserSectionRow(view.getName(), newData);
             view.addUserRow(newRow);
             bg.add(newRow.getJrb());
-            
-            CVData.getInstance().modelChanged();
             tf.setText("");
         }
     }

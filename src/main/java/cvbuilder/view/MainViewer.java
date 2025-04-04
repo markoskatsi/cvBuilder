@@ -14,7 +14,6 @@ import javax.swing.JTabbedPane;
  */
 public class MainViewer extends JFrame{
     private static MainViewer instance;
-    
     UserSectionTabs upbTabs;
     CoreSectionTabs coreTabs;
     
@@ -32,7 +31,7 @@ public class MainViewer extends JFrame{
       }
       return instance;
     }
-    
+        
     private MainViewer() {
         //creating window
         this.setLayout(new BorderLayout());
